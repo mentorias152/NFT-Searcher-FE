@@ -1,0 +1,18 @@
+{
+  "cwd": "D:\\Code\\NFT-verifier\\FE",
+  "newProject": true,
+  "name": "NFT Verifier",
+  "framework": "react",
+  "template": "single-view",
+  "cssPreProcessor": false,
+  "includeTailwind": false,
+  "theming": {
+    "customColor": false,
+    "color": "#007aff",
+    "darkTheme": false,
+    "iconFonts": true,
+    "fillBars": false,
+    "useUiKits": true
+  },
+  "customBuild": false
+}
