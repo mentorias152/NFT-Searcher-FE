@@ -11,7 +11,7 @@ const MyApp = () => {
 
   // ZMP Parameters
   const zmpparams = {
-    name: 'NFT Verifier', // App name
+    name: 'NFT-Verifier', // App name
       theme: 'auto', // Automatic theme detection
       // App store
       store: store,

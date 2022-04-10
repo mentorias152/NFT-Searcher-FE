@@ -1,41 +1,37 @@
 import React from 'react';
 import {
   Page,
+  Box,
   Navbar,
+  NavLeft,
+  NavRight,
   NavTitleLarge,
-  List,
-  ListItem,
+  Avatar,
+  Link,
   useStore,
-  Card,
+  Icon,
+  zmp,
 } from 'zmp-framework/react';
 import AppItems from '../components/app-items';
-import UserCard from '../components/user-card';
 
 const HomePage = () => {
   const user = useStore('user');
   return (
     <Page name="home" navbarLarge>
       {/* Top Navbar */}
-      <Navbar >
+      <Navbar>
+        <NavLeft displayname='navLeft'>
+          <Link href='#'>
+            <Icon zmp='zi-home'></Icon>
+          </Link>
+        </NavLeft>
         <NavTitleLarge>NFT Verifier</NavTitleLarge>
+        <NavRight><Avatar onClick={() => zmp.views.main.router.navigate('/user')}>{user.avatar}</Avatar></NavRight>
       </Navbar>
-      {/* Page content */}
-      {/* User info */}
-      <List>
-        <ListItem link="/user/">
-          <UserCard user={user} />
-        </ListItem>
-      </List>
 
+      <Box></Box>
       {/* Grid apps */}
       <AppItems />
-
-      {/* Route */}
-      <List>
-        <ListItem title="Dynamic (Component) Route" link="/dynamic-route/?blog=45&post=125&foo=bar" />
-        <ListItem title="Default Route (404)" link="/something-that-doesnt-exist" />
-        <ListItem title="About" link="/about/" />
-      </List>
     </Page>
   );
 }

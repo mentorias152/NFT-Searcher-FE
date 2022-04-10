@@ -1,1 +1,6 @@
 /* Your app custom styles here */
+.NavTitleLarge {
+    align-items: center;
+    align-self: center;
+    text-align: center;
+}
