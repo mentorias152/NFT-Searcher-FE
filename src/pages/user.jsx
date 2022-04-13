@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Avatar, Button, List, ListItem, Page, Title, useStore } from 'zmp-framework/react'
+import { Avatar, List, ListItem, Page, Title, useStore } from 'zmp-framework/react'
 import NavbarBack from '../components/navbar-back'
 
 const UserPage = () => {

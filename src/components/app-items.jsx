@@ -7,6 +7,7 @@ const AppItems = () => {
     { icon: 'zi-camera', label: 'Camera', link: '/camera' },
     { icon: 'zi-photo', label: 'Photo', link: '/photo' },
     { icon: 'zi-help-circle', label: 'About us', link:'/about' },
+    { icon: 'zi-memory', label: 'History', link:'/history' },
   ]
 
   const nav = (itemLink) => {
@@ -15,13 +16,19 @@ const AppItems = () => {
 
   return (
     <div>
-      <Grid columns={2}>
+      <Grid >
         {items.map(item => (
           <GridItem
             label={item.label}
-            style={{ backgroundColor: 'var(--zmp-color-w300)' }}
+            style={{ 
+              width: '50%',
+              backgroundColor: 'var(--zmp-color-w300)' }}
             key={item.icon}
-            icon={<Icon zmp={item.icon} />}
+            icon={<Icon
+              style={{
+                color: 'black'
+              }}
+              zmp={item.icon} />}
             onClick={() => nav(item.link)}
           />
         ))}

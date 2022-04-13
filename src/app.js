@@ -1,14 +1,12 @@
 // Import React and ReactDOM
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 
 // Import ZMP
 import ZMP from 'zmp-framework/core/lite-bundle';
 
 // Import ZMP-React Plugin
 import ZMPReact from 'zmp-framework/react';
-
-
 
 // Import ZMP Styles
 import 'zmp-framework/zmp-bundle.min.css';
@@ -29,7 +27,5 @@ if (!window.APP_CONFIG) {
 ZMP.use(ZMPReact)
 
 // Mount React App
-ReactDOM.render(
-  React.createElement(App),
-  document.getElementById('app'),
-);
+const root = ReactDOM.createRoot(document.getElementById('app'));
+root.render(React.createElement(App));
