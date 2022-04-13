@@ -1,11 +1,14 @@
 import React, { useRef, useEffect } from 'react';
-import { Webcam } from 'react-webcam';
-import { Page, Icon  } from 'zmp-framework/react';
+import Webcam from "react-webcam";
 
+const videoConstraints = {
+  width: 720,
+  height: 360,
+  facingMode: "user"
+}
 
 const WebcamComponent = () => {
-    const videoRef = React.useRef(null);
-    var temp = '';
+    const videoRef = useRef<Webcam>(null);
 
     const getVideo = () => {
         navigator.mediaDevices
@@ -25,13 +28,15 @@ const WebcamComponent = () => {
     useEffect(() => {
         getVideo();
       },[videoRef]);
+
     return (
         <div>
-            <video
-                id='cam'
-                ref={videoRef}
-                style={{ height: 420, width: 420,}}
-            />
+            <Webcam 
+              audio={false}
+              width={540}
+              height={360}
+              ref={videoRef}
+              videoConstraints={videoConstraints}/>
         </div>
     );
 }

@@ -6,8 +6,8 @@ const AppItems = () => {
   const items = [
     { icon: 'zi-camera', label: 'Camera', link: '/camera' },
     { icon: 'zi-photo', label: 'Photo', link: '/photo' },
-    { icon: 'zi-help-circle', label: 'About us', link:'/about' },
     { icon: 'zi-memory', label: 'History', link:'/history' },
+    { icon: 'zi-help-circle', label: 'About us', link:'/about' },
   ]
 
   const nav = (itemLink) => {

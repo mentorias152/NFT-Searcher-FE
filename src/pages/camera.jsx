@@ -8,7 +8,6 @@ const CameraPage = () => {
             <Page name='camera'>
                 <NavbarBack title='Camera' />
                 <WebcamComponent />
-                <Button>Huy</Button>
             </Page>
         );
 }
