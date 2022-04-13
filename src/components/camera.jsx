@@ -2,7 +2,7 @@ import React, { useRef, useEffect } from 'react';
 import Webcam from "react-webcam";
 
 const videoConstraints = {
-  width: 720,
+  width: 360,
   height: 360,
   facingMode: "user"
 }
@@ -33,7 +33,7 @@ const WebcamComponent = () => {
         <div>
             <Webcam 
               audio={false}
-              width={540}
+              width={360}
               height={360}
               ref={videoRef}
               videoConstraints={videoConstraints}/>
