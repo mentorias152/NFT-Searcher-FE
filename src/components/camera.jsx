@@ -41,33 +41,35 @@ const WebcamComponent = () => {
 
   return (
     <Page
-    style={{display: 'flex',
-    flexDirection: 'column',
-    height: '100vh',
-    justifyContent: 'center',
-    alignItems: 'center',}}>
-        <Webcam
-          audio={false}
-          ref={camRef}
-          screenshotFormat="image/jpeg"
-          videoConstraints={videoConstraints}
-          style={{
-            height: '100%',
-            width: '100%',
-          }}
-        ></Webcam>
-        <RadioButtonUnchecked
-          onClick={capture}
-          style={{
-            height: 40,
-            width: 40,
-            color: 'white',
-            position: 'absolute',
-            bottom: 0,
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            cursor: 'pointer',
-          }} />
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        height: '100vh',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}>
+      <Webcam
+        audio={false}
+        ref={camRef}
+        screenshotFormat="image/jpeg"
+        videoConstraints={videoConstraints}
+        style={{
+          height: '100%',
+          width: '100%',
+        }}
+      ></Webcam>
+      <RadioButtonUnchecked
+        onClick={capture}
+        style={{
+          height: 40,
+          width: 40,
+          color: 'white',
+          position: 'absolute',
+          bottom: 0,
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          cursor: 'pointer',
+        }} />
     </Page>
   );
 }

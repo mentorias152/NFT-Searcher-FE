@@ -3,12 +3,9 @@ import {
   Page,
   Navbar,
   NavLeft,
-  NavRight,
   NavTitleLarge,
-  Avatar,
   useStore,
   Icon,
-  zmp,
 } from 'zmp-framework/react';
 import AppItems from '../components/app-items';
 
@@ -23,11 +20,6 @@ const HomePage = () => {
           <Icon zmp='zi-home'></Icon>
         </NavLeft>
         <NavTitleLarge>NFT Verifier</NavTitleLarge>
-        <NavRight>
-          <Avatar onClick={() => {
-            zmp.views.main.router.navigate('/user')
-            }}>{user.avatar}</Avatar>
-        </NavRight>
       </Navbar>
       
       {/* Grid apps */}
