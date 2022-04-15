@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Page,
   Navbar,
@@ -11,7 +11,6 @@ import {
   zmp,
 } from 'zmp-framework/react';
 import AppItems from '../components/app-items';
-import WebcamComponent from '../components/camera';
 
 const HomePage = () => {
   const user = useStore('user');
@@ -25,7 +24,9 @@ const HomePage = () => {
         </NavLeft>
         <NavTitleLarge>NFT Verifier</NavTitleLarge>
         <NavRight>
-          <Avatar onClick={() => zmp.views.main.router.navigate('/user')}>{user.avatar}</Avatar>
+          <Avatar onClick={() => {
+            zmp.views.main.router.navigate('/user')
+            }}>{user.avatar}</Avatar>
         </NavRight>
       </Navbar>
       
