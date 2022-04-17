@@ -6,6 +6,7 @@ import {
   NavTitleLarge,
   useStore,
   Icon,
+  Button
 } from 'zmp-framework/react';
 import AppItems from '../components/app-items';
 
@@ -24,6 +25,10 @@ const HomePage = () => {
       
       {/* Grid apps */}
       <AppItems />
+
+      <Button>
+
+      </Button>
     </Page>
   );
 }

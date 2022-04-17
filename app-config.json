@@ -11,13 +11,11 @@
   "listSyncJS": [],
   "listAsyncJS": [],
   "pages": [
-    "/user",
-    "/form",
-    "/dynamic-route",
+    "/index",
     "/about",
-    "/404",
     "/camera",
     "/photo",
-    "/preview"
+    "/preview",
+    "/result"
   ]
 }

@@ -1,18 +1,16 @@
 import React, { useRef, useEffect, useState } from 'react';
 import Webcam from "react-webcam";
-import { RadioButtonUnchecked, Translate } from '@material-ui/icons';
-import { useStore, zmp, Button, Page } from 'zmp-framework/react';
+import { RadioButtonUnchecked } from '@material-ui/icons';
+import { zmp, Page } from 'zmp-framework/react';
+import temp from '../static/icons/toi-uu-hinh-anh-optimize-image-4-1200x700.jpg';
 
 const WebcamComponent = () => {
 
   const videoConstraints = {
-    width: 360,
-    height: 360,
     facingMode: "environment"
   };
 
   const camRef = useRef(null);
-  const [photo, setHasPhoto] = useState(null);
 
   const getVideo = () => {
     navigator.mediaDevices
@@ -33,9 +31,7 @@ const WebcamComponent = () => {
   }, [camRef]);
 
   const capture = React.useCallback(() => {
-    const imageSrc = camRef.current.getScreenshot();
-    setHasPhoto(imageSrc);
-    zmp.store.dispatch('setImage', { data: photo });
+    zmp.store.dispatch('setImage', { data: temp });
     zmp.views.main.router.navigate('/preview');
   }, [camRef]);
 
@@ -47,11 +43,12 @@ const WebcamComponent = () => {
         height: '100vh',
         justifyContent: 'center',
         alignItems: 'center',
+        backgroundColor:'black',
       }}>
       <Webcam
         audio={false}
         ref={camRef}
-        screenshotFormat="image/jpeg"
+        screenshotFormat="image/jpg"
         videoConstraints={videoConstraints}
         style={{
           height: '100%',
@@ -68,7 +65,7 @@ const WebcamComponent = () => {
           bottom: 0,
           left: '50%',
           transform: 'translate(-50%, -50%)',
-          cursor: 'pointer',
+          cursor: 'pointer'
         }} />
     </Page>
   );

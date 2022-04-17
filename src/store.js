@@ -11,7 +11,12 @@ const store = createStore({
     },
     image: {
       data: 'Huy',
-    }
+    },
+    results: [{
+      id: '',
+      data: '',
+      name: '',
+    }]
   },
   getters: {
     user({ state }) {
@@ -29,6 +34,10 @@ const store = createStore({
 
     setImage({ state }, data) {
       state.image = { ...state.image, ...data }
+    },
+
+    setResult({ state }, data) {
+      state.result = { ...state.result, ...data}
     }
   },
 })

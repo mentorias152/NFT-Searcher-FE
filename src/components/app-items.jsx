@@ -20,7 +20,7 @@ const AppItems = () => {
         {items.map(item => (
           <GridItem
             label={item.label}
-            style={{ 
+            style={{
               width: '50%',
               backgroundColor: 'var(--zmp-color-w300)' }}
             key={item.icon}
