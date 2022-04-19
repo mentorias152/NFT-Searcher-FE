@@ -9,14 +9,12 @@ const store = createStore({
       online: true,
       story: true
     },
+
     image: {
       data: 'Huy',
     },
-    results: [{
-      id: '',
-      data: '',
-      name: '',
-    }]
+
+    results: []
   },
   getters: {
     user({ state }) {
@@ -25,6 +23,10 @@ const store = createStore({
 
     image( {state} ) {
       return state.image
+    },
+
+    results({ state }) {
+      return state.results
     }
   },
   actions: {
@@ -36,8 +38,8 @@ const store = createStore({
       state.image = { ...state.image, ...data }
     },
 
-    setResult({ state }, data) {
-      state.result = { ...state.result, ...data}
+    setResults({ state }, data) {
+      state.results = { ...state.results, ...data}
     }
   },
 })

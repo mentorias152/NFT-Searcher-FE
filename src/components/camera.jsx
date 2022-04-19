@@ -2,7 +2,6 @@ import React, { useRef, useEffect, useState } from 'react';
 import Webcam from "react-webcam";
 import { RadioButtonUnchecked } from '@material-ui/icons';
 import { zmp, Page } from 'zmp-framework/react';
-import temp from '../static/icons/toi-uu-hinh-anh-optimize-image-4-1200x700.jpg';
 
 const WebcamComponent = () => {
 
@@ -31,7 +30,7 @@ const WebcamComponent = () => {
   }, [camRef]);
 
   const capture = React.useCallback(() => {
-    zmp.store.dispatch('setImage', { data: temp });
+    zmp.store.dispatch('setImage', { data: camRef.current.getScreenshot() });
     zmp.views.main.router.navigate('/preview');
   }, [camRef]);
 
@@ -48,7 +47,7 @@ const WebcamComponent = () => {
       <Webcam
         audio={false}
         ref={camRef}
-        screenshotFormat="image/jpg"
+        screenshotFormat='image/jpeg'
         videoConstraints={videoConstraints}
         style={{
           height: '100%',

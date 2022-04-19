@@ -1,31 +1,38 @@
 import React, { useEffect, useState } from 'react';
-import { Page, zmp, useStore, Button, Card } from 'zmp-framework/react';
+import { Page, zmp, useStore, Button, Input } from 'zmp-framework/react';
 import NavbarBack from '../components/navbar-back';
+import FormData from 'form-data';
+import temp from '../static/icons/temp.jpg';
+import store from '../store';
 
 const PreviewPage = () => {
     const previewImage = useStore('image').data;
-    const [imgSrc, setImgSrc] = useState(null);
-
-    const image = useStore('image');
-
-    useEffect(() => {
-        setImgSrc(previewImage);
-        console.log('Load image succeed!');
-    }, [])
+    let results = [];
 
     async function confirm() {
-        console.log(image.data)
-        const res = await fetch('https://60cc-2001-ee0-500f-f5d0-9de5-ee4f-6115-8c7.ap.ngrok.io/image-upload', {
+        //convert image into File
+        const blob = await fetch(previewImage).then(res => res.blob());
+        const file = new File([blob], 'screenshot.jpg', {type: blob.type});
+
+        //fetch data from api
+        var form = new FormData();
+        form.append('file', file);
+        const res = await fetch('https://c33e-27-3-9-158.ngrok.io/image-upload', {
+            body: form,
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
-            },
-            body: {
-                file: image.data
+                'Accept': 'application/json'
             }
-        })
-        console.log(res.json());
-        //open loading toast
+        }).then(res => res.json())
+        .catch(err => console.error(err));
+
+        for (let i = 0; i < res.result.length; i++) {
+            results[i] = res.result[i];
+            console.log(results[i]);
+        }
+
+        zmp.store.dispatch('setResults', results);
+
         zmp.views.main.router.navigate('/result');
     }
 
@@ -46,7 +53,7 @@ const PreviewPage = () => {
                     height: '90%',
                     width: '100%',
                 }}
-                src={imgSrc} />
+                src={previewImage} />
             <Button
                 onClick={confirm}
                 typeName='primary'

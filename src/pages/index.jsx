@@ -25,10 +25,6 @@ const HomePage = () => {
       
       {/* Grid apps */}
       <AppItems />
-
-      <Button>
-
-      </Button>
     </Page>
   );
 }

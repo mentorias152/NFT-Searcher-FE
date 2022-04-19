@@ -1,23 +1,24 @@
-import React from 'react';
-import { Card } from 'zmp-framework/react';
-import tempImage from '../static/icons/512x512.png';
+import React, { useState, useEffect } from 'react';
+import { Card, useStore, Grid } from 'zmp-framework/react';
 
 const ResultItems = () => {
-    const items = [
-        { id: '1', name: 'temp', description: 'This is temp ', data: tempImage, collection: 'TEMP', owner: 'someone who is temp', price: 10000 },
-        { id: '2', name: 'temp', description: 'This is temp ', data: tempImage, collection: 'TEMP', owner: 'someone who is temp', price: 10000 }
 
-    ];
+    const results = useStore('results');
+    const size = '30vh';
+ 
     return (
         <div>
-            {items.map(item =>
-                <Card inset key={item.id}>
+            <Grid>
+            {Object.keys(results).map(item =>
+                {
+                const str = results[item].id.split(':');
+                return (<Card inset key={results[item].id}>
                     <h2
                         style={{
                             textAlign: 'center',
                             border: '20px 10px 0px 10px'
                         }}>
-                        {item.name}
+                        {results[item].meta_name}
                     </h2>
                     <hr></hr>
                     <div
@@ -27,9 +28,9 @@ const ResultItems = () => {
 
                         }}
                     >
-                        <img src={item.data}
+                        <img src={results[item].meta_content_url}
                             style={{
-                                width: '50%',
+                                width: '50%'
                             }} />
                         <div
                             style={{
@@ -40,16 +41,16 @@ const ResultItems = () => {
                             <Card title='Details'
                             >
                                 <hr></hr>
+                                <p>${results[item].lastsale_price}</p>
                                 <p style={{
-                                    fontSize: '30px '
-                                }}>${item.price}</p>
-                                <p>{item.description}</p>
-                                <p>{item.collection}</p>
-                                <p>Owner: {item.owner}</p>
+                                    fontSize: '20px'
+                                }}>Blockchain: {str[0]}</p>
+                                <p>{results[item].meta_description}</p>
                             </Card>
                         </div>
                     </div>
-                </Card>)}
+                </Card>)})}
+            </Grid>
         </div>
     );
 }
