@@ -1,57 +1,66 @@
 import React, { useState, useEffect } from 'react';
 import { Card, useStore, Grid } from 'zmp-framework/react';
+import { FadeLoader } from 'react-spinners';
 
 const ResultItems = () => {
 
     const results = useStore('results');
-    const size = '30vh';
- 
-    return (
-        <div>
-            <Grid>
-            {Object.keys(results).map(item =>
-                {
-                const str = results[item].id.split(':');
-                return (<Card inset key={results[item].id}>
-                    <h2
-                        style={{
-                            textAlign: 'center',
-                            border: '20px 10px 0px 10px'
-                        }}>
-                        {results[item].meta_name}
-                    </h2>
-                    <hr></hr>
-                    <div
-                        style={{
-                            display: 'flex',
-                            flexAlign: 'row',
 
-                        }}
-                    >
-                        <img src={results[item].meta_content_url}
-                            style={{
-                                width: '50%'
-                            }} />
-                        <div
-                            style={{
-                                padding: '10px',
-                                width: '50%',
-                                height: '80%'
-                            }}>
-                            <Card title='Details'
-                            >
-                                <hr></hr>
-                                <p>${results[item].lastsale_price}</p>
-                                <p style={{
-                                    fontSize: '20px'
-                                }}>Blockchain: {str[0]}</p>
-                                <p>{results[item].meta_description}</p>
-                            </Card>
-                        </div>
+    return (
+        results != null ?
+            <div>
+                <Grid>
+                    {Object.keys(results).map(item => {
+                        const str = results[item].id.split(':');
+                        return (
+                            <div
+                                style={{
+                                    width: '100%'
+                                }}><Card inset key={results[item].id}
+                                    style={{
+                                        display: 'flex',
+                                        flexAlign: 'column',
+                                    }}>
+                                    <img src={results[item].meta_content_url}
+                                        style={{
+                                            width: '100%'
+                                        }} />
+                                    <hr></hr>
+                                    <h2
+                                        style={{
+                                            textAlign: 'center',
+                                            border: '20px 10px 0px 10px'
+                                        }}>
+                                        {results[item].meta_name}
+                                    </h2>
+                                    <p>Description here</p>
+                                </Card></div>)
+                    })}
+                </Grid>
+            </div>
+            :
+            <div>
+                <Card inset >
+                    <div style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        height: '65vh'
+                    }}>
+                        <FadeLoader color='grey' />
                     </div>
-                </Card>)})}
-            </Grid>
-        </div>
+                </Card>
+                <Card inset >
+                    <div style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        height: '65vh'
+                    }}>
+                        <FadeLoader color='grey' />
+                    </div>
+                </Card>
+            </div>
     );
 }
 

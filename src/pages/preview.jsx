@@ -1,37 +1,39 @@
-import React, { useEffect, useState } from 'react';
-import { Page, zmp, useStore, Button, Input } from 'zmp-framework/react';
-import NavbarBack from '../components/navbar-back';
+import React from 'react';
+import { Page, zmp, useStore, Button, Icon, Link } from 'zmp-framework/react';
 import FormData from 'form-data';
 import temp from '../static/icons/temp.jpg';
-import store from '../store';
 
 const PreviewPage = () => {
     const previewImage = useStore('image').data;
     let results = [];
 
     async function confirm() {
+
         //convert image into File
         const blob = await fetch(previewImage).then(res => res.blob());
-        const file = new File([blob], 'screenshot.jpg', {type: blob.type});
+        const file = new File([blob], 'screenshot.jpg', { type: blob.type });
 
-        //fetch data from api
+        //create form
         var form = new FormData();
         form.append('file', file);
-        const res = await fetch('https://c33e-27-3-9-158.ngrok.io/image-upload', {
+
+        //fetch data
+        fetch('https://0662-115-79-58-54.ap.ngrok.io/image-upload', {
             body: form,
             method: 'POST',
             headers: {
                 'Accept': 'application/json'
             }
-        }).then(res => res.json())
-        .catch(err => console.error(err));
+        }).then(res => res.json()).then(res => {
 
-        for (let i = 0; i < res.result.length; i++) {
-            results[i] = res.result[i];
-            console.log(results[i]);
-        }
+            for (let i = 0; i < res.result.length; i++) {
+                results[i] = res.result[i];
+                console.log(results[i]);
+            }
 
-        zmp.store.dispatch('setResults', results);
+            zmp.store.dispatch('setResults', results);
+        })
+            .catch(err => console.error(err));
 
         zmp.views.main.router.navigate('/result');
     }
@@ -46,14 +48,34 @@ const PreviewPage = () => {
                 alignItems: 'center',
                 backgroundColor: 'white'
             }}>
-            <NavbarBack title='Preview' />
             <img
                 style={{
                     position: 'relative',
-                    height: '90%',
                     width: '100%',
                 }}
                 src={previewImage} />
+            <div
+                style={{
+                    position: 'absolute',
+                    display: 'flex',
+                    top: 0,
+                    margin: '10px'
+                }}>
+                <Link back>
+                    <Icon zmp='zi-arrow-left' color='white' />
+                </Link>
+            </div>
+
+            <div
+                style={{
+                    position: 'absolute',
+                    display: 'flex',
+                    top: 0,
+                    right: 0,
+                    margin: '10px'
+                }}>
+                <Icon zmp='zi-unfold-more' color='white' />
+            </div>
             <Button
                 onClick={confirm}
                 typeName='primary'

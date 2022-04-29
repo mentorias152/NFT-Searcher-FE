@@ -10,11 +10,8 @@ const store = createStore({
       story: true
     },
 
-    image: {
-      data: 'Huy',
-    },
+    results: null,
 
-    results: []
   },
   getters: {
     user({ state }) {

@@ -1,7 +1,7 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect } from 'react';
 import Webcam from "react-webcam";
 import { RadioButtonUnchecked } from '@material-ui/icons';
-import { zmp, Page } from 'zmp-framework/react';
+import { zmp, Page, Link, Icon } from 'zmp-framework/react';
 
 const WebcamComponent = () => {
 
@@ -42,7 +42,7 @@ const WebcamComponent = () => {
         height: '100vh',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor:'black',
+        backgroundColor: 'black',
       }}>
       <Webcam
         audio={false}
@@ -66,6 +66,17 @@ const WebcamComponent = () => {
           transform: 'translate(-50%, -50%)',
           cursor: 'pointer'
         }} />
+      <div
+        style={{
+          position: 'absolute',
+          display: 'flex',
+          bottom: 10,
+          margin: '10px'
+        }}>
+        <Link href='/photo'>
+          <Icon zmp='zi-photo' size='40' color='white' />
+        </Link>
+      </div>
     </Page>
   );
 }
