@@ -11,6 +11,8 @@ const store = createStore({
     },
 
     results: null,
+    image: null,
+    linkBack: null,
 
   },
   getters: {
@@ -24,6 +26,10 @@ const store = createStore({
 
     results({ state }) {
       return state.results
+    },
+
+    linkBack({ state }) {
+      return state.linkBack
     }
   },
   actions: {
@@ -37,6 +43,10 @@ const store = createStore({
 
     setResults({ state }, data) {
       state.results = { ...state.results, ...data}
+    },
+
+    setLinkBack({ state }, data) {
+      state.linkBack = { ...state.linkBack, ...data}
     }
   },
 })
