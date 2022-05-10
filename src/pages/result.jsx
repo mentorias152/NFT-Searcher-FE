@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Page, useStore, Navbar, NavLeft, NavTitle, Link, Icon } from 'zmp-framework/react';
+import { Page, zmp, Navbar, NavLeft, NavTitle, Link, Icon } from 'zmp-framework/react';
 import ResultItems from '../components/result-items';
 
 const ResultPage = () => {
@@ -9,7 +9,7 @@ const ResultPage = () => {
       <Navbar>
         <NavLeft displayName="zmp-navleft">
           <Link href='/index'>
-            <Icon zmp="zi-arrow-left" />
+            <Icon zmp="zi-arrow-left" onClick={() => {zmp.store.dispatch('setLoading', 'true')}}/>
           </Link>
         </NavLeft>
         <NavTitle>Result</NavTitle>

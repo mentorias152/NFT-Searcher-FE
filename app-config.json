@@ -14,8 +14,8 @@
     "/index",
     "/about",
     "/camera",
-    "/photo",
     "/preview",
-    "/result"
+    "/result",
+    "/detail"
   ]
 }

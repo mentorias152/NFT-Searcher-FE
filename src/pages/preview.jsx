@@ -1,10 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Page, zmp, useStore, Button, Icon, Link } from 'zmp-framework/react';
 import FormData from 'form-data';
 import temp from '../static/icons/temp.jpg';
+import NavbarBack from '../components/navbar-back';
 
 const PreviewPage = () => {
-    const previewImage = useStore('image').data;
+    const [previewImage, setPreviewImage] = useState(useStore('image').data);
+
+    //handle if previewImage is a File
+    if (typeof (previewImage) == 'object') {
+        var fileReader = new FileReader();
+        fileReader.readAsDataURL(previewImage);
+        fileReader.addEventListener("load", (e) => {
+            setPreviewImage(e.target.result);
+        })
+    }
+
     let results = [];
 
     async function confirm() {
@@ -18,7 +29,7 @@ const PreviewPage = () => {
         form.append('file', file);
 
         //fetch data
-        fetch('https://0662-115-79-58-54.ap.ngrok.io/image-upload', {
+        fetch('https://1387-115-79-58-54.ap.ngrok.io/image-upload', {
             body: form,
             method: 'POST',
             headers: {
@@ -28,10 +39,11 @@ const PreviewPage = () => {
 
             for (let i = 0; i < res.result.length; i++) {
                 results[i] = res.result[i];
-                console.log(results[i]);
             }
 
+            let str = 'false';
             zmp.store.dispatch('setResults', results);
+            zmp.store.dispatch('setLoading', str);
         })
             .catch(err => console.error(err));
 
@@ -46,36 +58,24 @@ const PreviewPage = () => {
                 height: '100vh',
                 justifyContent: 'center',
                 alignItems: 'center',
-                backgroundColor: 'white'
+                backgroundColor: 'black'
             }}>
-            <img
-                style={{
-                    position: 'relative',
-                    width: '100%',
-                }}
-                src={previewImage} />
+                <NavbarBack title='Preview'/>
             <div
                 style={{
-                    position: 'absolute',
                     display: 'flex',
-                    top: 0,
-                    margin: '10px'
-                }}>
-                <Link back>
-                    <Icon zmp='zi-arrow-left' color='white' />
-                </Link>
+                    justifyContent: 'center',
+                    alignTtems: 'center',
+                    flexAlign: 'center',
+                    height:'90vh'
+                }}><img
+                    style={{
+                        width:'100%',
+                        objectFit: 'contain'
+                    }}
+                    src={previewImage} />
             </div>
-
-            <div
-                style={{
-                    position: 'absolute',
-                    display: 'flex',
-                    top: 0,
-                    right: 0,
-                    margin: '10px'
-                }}>
-                <Icon zmp='zi-unfold-more' color='white' />
-            </div>
+            
             <Button
                 onClick={confirm}
                 typeName='primary'

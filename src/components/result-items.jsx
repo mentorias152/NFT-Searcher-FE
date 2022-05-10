@@ -1,22 +1,29 @@
 import React, { useState, useEffect } from 'react';
-import { Card, useStore, Grid } from 'zmp-framework/react';
+import { Card, useStore, Grid, zmp } from 'zmp-framework/react';
 import { FadeLoader } from 'react-spinners';
 
 const ResultItems = () => {
 
     const results = useStore('results');
+    const loading = useStore('loading');
+
+    const navigate = (item) => {
+        zmp.store.dispatch('setDetail', results[item]);
+        zmp.views.main.router.navigate('/detail');
+    }
 
     return (
-        results != null ?
+        (results != null && loading.data =='false') ?
             <div>
                 <Grid>
                     {Object.keys(results).map(item => {
                         const str = results[item].id.split(':');
                         return (
-                            <div
+                            <div onClick={ () => navigate(item)}
                                 style={{
                                     width: '100%'
-                                }}><Card inset key={results[item].id}
+                                }}><Card
+                                inset key={results[item].id}
                                     style={{
                                         display: 'flex',
                                         flexAlign: 'column',
@@ -33,7 +40,10 @@ const ResultItems = () => {
                                         }}>
                                         {results[item].meta_name}
                                     </h2>
-                                    <p>Description here</p>
+                                    <p
+                                    style={{
+                                        textAlign:'center'
+                                    }}>On sale for <strong>{results[item].lastsale_price} ETH</strong></p>
                                 </Card></div>)
                     })}
                 </Grid>

@@ -12,6 +12,11 @@ const store = createStore({
 
     results: null,
 
+    loading: {
+      data: 'true',
+    },
+
+    detail: null,
   },
   getters: {
     user({ state }) {
@@ -24,6 +29,14 @@ const store = createStore({
 
     results({ state }) {
       return state.results
+    },
+
+    loading({ state }){
+      return state.loading
+    },
+
+    detail({ state }) {
+      return state.detail
     }
   },
   actions: {
@@ -37,6 +50,14 @@ const store = createStore({
 
     setResults({ state }, data) {
       state.results = { ...state.results, ...data}
+    },
+
+    setLoading({ state }, data) {
+      state.loading = { ...state.loading, data}
+    },
+
+    setDetail({ state }, data) {
+      state.detail = { ...state.detail, ...data}
     }
   },
 })

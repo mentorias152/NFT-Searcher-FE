@@ -1,18 +1,18 @@
+import { Box } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
 import {
   Page,
   Navbar,
   NavLeft,
   NavTitleLarge,
-  useStore,
   Icon,
-  Button
+  Grid,
+  Card,
+  useStore
 } from 'zmp-framework/react';
 import AppItems from '../components/app-items';
 
 const HomePage = () => {
-  const user = useStore('user');
-
   return (
     <Page name="home" navbarLarge>
       {/* Top Navbar */}
@@ -22,9 +22,14 @@ const HomePage = () => {
         </NavLeft>
         <NavTitleLarge>NFT Verifier</NavTitleLarge>
       </Navbar>
-      
+
       {/* Grid apps */}
       <AppItems />
+      <Card inset>
+        <h2 style={{textAlign:'center'}}>About us</h2>
+        <hr></hr>
+        Something here is writen too long just to test how long would a card be
+      </Card>
     </Page>
   );
 }
