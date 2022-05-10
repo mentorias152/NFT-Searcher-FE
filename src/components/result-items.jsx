@@ -14,10 +14,8 @@ const ResultItems = () => {
 
     return (
         (results != null && loading.data =='false') ?
-            <div>
                 <Grid>
                     {Object.keys(results).map(item => {
-                        const str = results[item].id.split(':');
                         return (
                             <div onClick={ () => navigate(item)}
                                 style={{
@@ -47,7 +45,6 @@ const ResultItems = () => {
                                 </Card></div>)
                     })}
                 </Grid>
-            </div>
             :
             <div>
                 <Card inset >
