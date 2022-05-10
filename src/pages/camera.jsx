@@ -1,13 +1,18 @@
 import React from 'react';
-import { Page, Button, Link, Icon, zmp } from 'zmp-framework/react';
+import { Page, Navbar, NavLeft, Link, Icon, NavTitle } from 'zmp-framework/react';
 import Camera from '../components/camera';
-import NavbarBack from '../components/navbar-back';
 
 const CameraPage = () => {
-    zmp.store.dispatch('setLinkBack', '/camera');
     return (
         <Page name='camera'>
-            <NavbarBack title='Camera'/>
+            <Navbar>
+                <NavLeft displayName="zmp-navleft">
+                    <Link className="no-ripple" noLinkClass href='/index'>
+                        <Icon zmp="zi-arrow-left" />
+                    </Link>
+                </NavLeft>
+                <NavTitle>Camera</NavTitle>
+            </Navbar>
             <Camera />
         </Page>
     );

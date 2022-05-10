@@ -11,6 +11,7 @@ import {
 import AppItems from '../components/app-items';
 
 const HomePage = () => {
+  
   return (
     <Page name="home" navbarLarge>
       {/* Top Navbar */}

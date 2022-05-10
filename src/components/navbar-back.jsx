@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, Navbar, NavLeft, Icon, NavTitle, NavRight } from 'zmp-framework/react';
 
-const NavbarBack = ({ title, linkRight, labelRight }) => {
+const NavbarBack = ({ title, linkRight, labelRight, isBack }) => {
   return (
     <Navbar>
       <NavLeft displayName="zmp-navleft">

@@ -2,11 +2,15 @@ import React from 'react';
 import { Link, Navbar, NavLeft, Icon, NavTitle, NavRight, zmp, useStore } from 'zmp-framework/react';
 
 const NavbarBackCustom = ({ title, linkRight, labelRight }) => {
-  const nav = () => {
-    const link = useStore('linkBack');
-    zmp.mains.view.router.navigate(link.data);
+  
+  const link = useStore('linkBack');
 
-    zmp.store.dispatch('setLinkBack', '/index');
+  const nav = () => {
+    zmp.store.dispatch('setLoading', 'true');
+    if (link!= null)
+      zmp.views.main.router.navigate(link.data);
+      else
+      zmp.views.main.router.navigate('/index');
   };
   return (
     <Navbar>

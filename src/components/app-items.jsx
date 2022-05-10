@@ -26,7 +26,7 @@ const AppItems = () => {
         {items.map(item => (
           <GridItem
             style={{
-              width: '50%'}}
+              width: '100%'}}
             key={item.icon}
             onClick={() => navigate(item.link)}>
           <Box

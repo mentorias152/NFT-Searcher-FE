@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
-import { Page, useStore, Navbar, NavLeft, NavTitle, Link, Icon } from 'zmp-framework/react';
+import { Page, zmp, Navbar, NavLeft, NavTitle, Link, Icon } from 'zmp-framework/react';
 import NavbarBackCustom from '../components/navbar-back-custom';
 import ResultItems from '../components/result-items';
 
 const ResultPage = () => {
 
   return (
-    <Page>
+    <Page >
       <NavbarBackCustom title='Results'/>
       <ResultItems />
     </Page>
