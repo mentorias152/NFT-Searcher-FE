@@ -8,7 +8,6 @@ const DetailPage = () => {
     return (
         <Page>
             <NavbarBack title='Detail' />
-            <div>
                 <Grid>
                     <Card
                         inset key={detail.id}
@@ -43,7 +42,6 @@ const DetailPage = () => {
                         </p>
                     </Card>
                 </Grid>
-            </div>
         </Page>
     );
 }
