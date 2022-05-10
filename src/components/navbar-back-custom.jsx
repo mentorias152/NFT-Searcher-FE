@@ -9,9 +9,7 @@ const NavbarBackCustom = ({ title, linkRight, labelRight }) => {
   return (
     <Navbar>
       <NavLeft displayName="zmp-navleft">
-        <Button onClick={nav}>
-          <Icon zmp="zi-arrow-left"/>
-        </Button>
+          <Icon onClick={nav} zmp="zi-arrow-left"/>
       </NavLeft>
       <NavTitle>{title}</NavTitle>
       {linkRight && labelRight && (
