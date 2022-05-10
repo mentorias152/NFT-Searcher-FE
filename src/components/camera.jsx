@@ -30,7 +30,7 @@ const Camera = () => {
   }, [camRef]);
 
   const capture = React.useCallback(() => {
-    zmp.store.dispatch('setALinkBack', { data: '/camera' });
+    zmp.store.dispatch('setLinkBack', { data: '/camera' });
     zmp.store.dispatch('setImage', { data: camRef.current.getScreenshot() });
     zmp.views.main.router.navigate('/preview');
   }, [camRef]);
