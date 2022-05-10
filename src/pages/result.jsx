@@ -1,19 +1,13 @@
 import React, { useEffect } from 'react';
-import { Page, zmp, Navbar, NavLeft, NavTitle, Link, Icon } from 'zmp-framework/react';
+import { Page, useStore, Navbar, NavLeft, NavTitle, Link, Icon } from 'zmp-framework/react';
+import NavbarBackCustom from '../components/navbar-back-custom';
 import ResultItems from '../components/result-items';
 
 const ResultPage = () => {
 
   return (
-    <Page >
-      <Navbar>
-        <NavLeft displayName="zmp-navleft">
-          <Link href='/index'>
-            <Icon zmp="zi-arrow-left" onClick={() => {zmp.store.dispatch('setLoading', 'true')}}/>
-          </Link>
-        </NavLeft>
-        <NavTitle>Result</NavTitle>
-      </Navbar>
+    <Page>
+      <NavbarBackCustom title='Results'/>
       <ResultItems />
     </Page>
   );

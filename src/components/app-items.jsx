@@ -26,23 +26,22 @@ const AppItems = () => {
         {items.map(item => (
           <GridItem
             style={{
-              width: '100%'}}
+              width: '50%'}}
             key={item.icon}
             onClick={() => navigate(item.link)}>
           <Box
-          p='5'
+          p='3'
           style={{
             backgroundColor:'white',
             width: '50%',
             borderRadius:'8px'
           }}>
             <Icon
+            size={100}
               style={{
-                color: 'black'
+                color: 'black',
               }}
               zmp={item.icon} />
-              <p
-              style={{color:'black'}}>{item.label}</p>
               </Box>
               </GridItem>
         ))}

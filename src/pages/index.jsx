@@ -6,9 +6,7 @@ import {
   NavLeft,
   NavTitleLarge,
   Icon,
-  Grid,
-  Card,
-  useStore
+  Card
 } from 'zmp-framework/react';
 import AppItems from '../components/app-items';
 
