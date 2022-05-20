@@ -29,7 +29,7 @@ const PreviewPage = () => {
         form.append('file', file);
 
         //fetch data
-        fetch('https://1387-115-79-58-54.ap.ngrok.io/image-upload', {
+        fetch('https://62f8-171-227-246-234.ap.ngrok.io/api/v1/upload', {
             body: form,
             method: 'POST',
             headers: {

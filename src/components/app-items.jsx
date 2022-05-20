@@ -22,7 +22,7 @@ const AppItems = () => {
 
   return (
     <div>
-      <Grid columns={1} noBorder>
+      <Grid columns={2} noBorder>
         {items.map(item => (
           <GridItem
             style={{
