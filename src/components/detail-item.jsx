@@ -1,10 +1,11 @@
 import React from 'react'
-import { useStore, Card, Grid, Text, Link } from 'zmp-framework/react';
+import { useStore, Card, Grid, Text, Link, Button, zmp } from 'zmp-framework/react';
 
 const DetailItem = () => {
     const detail = useStore('detail');
     const str = detail.id.split(':');
-    const raribleURL = 'https://rarible.com/token/' + str[1];
+    const raribleURL = 'https://rarible.com/token/' + str[1] + ':' + str[2];
+    console.log(raribleURL);
     return (
         <Grid>
             <div
@@ -35,9 +36,7 @@ const DetailItem = () => {
                     <Text><strong>Description: </strong><br></br>
                     {detail.meta_description}
                     </Text>
-                    <Text>
-                        <Link href={raribleURL}>View in Rarible</Link>
-                    </Text>
+                    <a href={raribleURL}>View in Rarible</a>
                 </Card></div>
         </Grid>
     );

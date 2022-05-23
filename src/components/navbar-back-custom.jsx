@@ -3,12 +3,12 @@ import { Link, Navbar, NavLeft, Icon, NavTitle, NavRight, zmp, useStore } from '
 
 const NavbarBackCustom = ({ title, linkRight, labelRight }) => {
   
-  const link = useStore('linkBack');
+  const link = useStore('linkBack').data;
 
   const nav = () => {
     zmp.store.dispatch('setLoading', 'true');
-    if (link!= null)
-      zmp.views.main.router.navigate(link.data);
+    if (link == '/camera')
+      zmp.views.main.router.navigate(link);
       else
       zmp.views.main.router.navigate('/index');
   };

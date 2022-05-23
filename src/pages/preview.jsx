@@ -5,6 +5,7 @@ import NavbarBack from '../components/navbar-back';
 
 const PreviewPage = () => {
     const [previewImage, setPreviewImage] = useState(useStore('image').data);
+    const api = useStore('api').data;
 
     //handle if previewImage is a File
     if (typeof (previewImage) == 'object') {
@@ -28,7 +29,7 @@ const PreviewPage = () => {
         form.append('file', file);
 
         //fetch data
-        fetch('https://62f8-171-227-246-234.ap.ngrok.io/api/v1/upload', {
+        fetch(api, {
             body: form,
             method: 'POST',
             headers: {

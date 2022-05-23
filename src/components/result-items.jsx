@@ -18,7 +18,7 @@ const ResultItems = () => {
         (results != null && loading.data =='false') ?
                 <Grid columns={2}>
                     {Object.keys(results).map(item => (
-                        <GridItem style={{paddingBottom:'0px', paddingTop:'0px'}}>
+                        <GridItem noBorder onClick={() => navigate(item)}style={{paddingBottom:'0px', paddingTop:'0px'}}>
                             <Card
                                 onClick={ () => navigate(item)}
                                 inset key={results[item].id}
@@ -39,11 +39,18 @@ const ResultItems = () => {
                                         }}>
                                         {results[item].meta_name}
                                     </h3>
-                                    <p
+                                    {results[item].lastsale_price == 0 ?
+                                        <p
+                                        style={{
+                                            textAlign:'center',
+                                            color:'black'
+                                        }}><strong>Not for sale</strong></p>
+                                        :
+                                        <p
                                     style={{
                                         textAlign:'center',
                                         color:'black'
-                                    }}><strong>{results[item].lastsale_price} ETH</strong></p>
+                                    }}>On sale for <strong>{results[item].lastsale_price}</strong> ETH</p>}
                                 </Card>
                             </GridItem>))}
                 </Grid>

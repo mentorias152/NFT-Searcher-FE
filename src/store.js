@@ -18,8 +18,11 @@ const store = createStore({
       data: 'true',
     },
 
+    api: null,
+
     detail: null,
   },
+
   getters: {
     user({ state }) {
       return state.user
@@ -32,6 +35,7 @@ const store = createStore({
     results({ state }) {
       return state.results
     },
+
     loading({ state }){
       return state.loading
     },
@@ -39,8 +43,13 @@ const store = createStore({
     detail({ state }) {
       return state.detail
     },
+
     linkBack({ state }) {
       return state.linkBack
+    },
+
+    api({ state }) {
+      return state.api
     }
   },
   actions: {
@@ -55,6 +64,7 @@ const store = createStore({
     setResults({ state }, data) {
       state.results = { ...state.results, ...data}
     },
+
     setLoading({ state }, data) {
       state.loading = { ...state.loading, data}
     },
@@ -65,6 +75,10 @@ const store = createStore({
 
     setLinkBack({ state }, data) {
       state.linkBack = { ...state.linkBack, ...data}
+    },
+
+    setApi({ state }, data) {
+      state.api = { ...state.api, ...data}
     }
   }
 })

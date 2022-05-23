@@ -16,6 +16,7 @@ const AppItems = () => {
   };
 
   const setSelectedFile = (file) => {
+    zmp.store.dispatch('setLinkBack', {data: '/upload'})
     zmp.store.dispatch('setImage', { data: file });
     zmp.views.main.router.navigate('/crop');
   }
