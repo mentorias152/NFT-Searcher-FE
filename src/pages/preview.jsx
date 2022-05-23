@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { Page, zmp, useStore, Button, Icon, Link } from 'zmp-framework/react';
+import { Page, zmp, useStore, Button } from 'zmp-framework/react';
 import FormData from 'form-data';
-import temp from '../static/icons/temp.jpg';
 import NavbarBack from '../components/navbar-back';
 
 const PreviewPage = () => {
@@ -58,7 +57,6 @@ const PreviewPage = () => {
                 height: '100vh',
                 justifyContent: 'center',
                 alignItems: 'center',
-                backgroundColor: 'black'
             }}>
                 <NavbarBack title='Preview'/>
             <div
@@ -67,7 +65,7 @@ const PreviewPage = () => {
                     justifyContent: 'center',
                     alignTtems: 'center',
                     flexAlign: 'center',
-                    height:'90vh'
+                    height:'80vh'
                 }}><img
                     style={{
                         width:'100%',

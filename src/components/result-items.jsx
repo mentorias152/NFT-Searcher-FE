@@ -51,7 +51,7 @@ const ResultItems = () => {
             <div>
                 <Grid columns={2} noBorder>
                     {temp.map(item => (
-                    <GridItem style={{height:'45vh'}}>
+                    <GridItem style={{height:'45vh'}} key={item}>
                         <Card inset style={{width: '100%'}}>
                     <div style={{
                         display: 'flex',

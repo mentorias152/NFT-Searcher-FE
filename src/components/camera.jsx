@@ -32,7 +32,7 @@ const Camera = () => {
   const capture = React.useCallback(() => {
     zmp.store.dispatch('setLinkBack', { data: '/camera' });
     zmp.store.dispatch('setImage', { data: camRef.current.getScreenshot() });
-    zmp.views.main.router.navigate('/preview');
+    zmp.views.main.router.navigate('/crop');
   }, [camRef]);
 
   const selectFile = () => {
@@ -42,7 +42,7 @@ const Camera = () => {
   const setSelectedFile = (file) => {
     zmp.store.dispatch('setLinkBack', { data: '/camera' });
     zmp.store.dispatch('setImage', { data: file });
-    zmp.views.main.router.navigate('/preview');
+    zmp.views.main.router.navigate('/crop');
   }
 
   return (
@@ -89,9 +89,8 @@ const Camera = () => {
         }}>
 
         <Icon zmp='zi-photo' size='40' color='white' onClick={selectFile} />
-        <input id='selectFile' type='file' style={{ display: 'none' }}
+        <input id='selectFile' type='file' accept='image/*' style={{ display: 'none' }}
           onChange={(e) => setSelectedFile(e.target.files[0])}></input>
-
       </div>
 
     </Page>

@@ -16,6 +16,7 @@
     "/camera",
     "/preview",
     "/result",
-    "/detail"
+    "/detail",
+    "/crop"
   ]
 }
