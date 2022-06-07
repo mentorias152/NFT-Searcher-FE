@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Page, zmp, useStore, Button } from 'zmp-framework/react';
+import { Page, zmp, useStore, Button, Fab, Icon } from 'zmp-framework/react';
 import FormData from 'form-data';
 import NavbarBack from '../components/navbar-back';
+import {FiCrop} from 'react-icons/fi';
 
 const PreviewPage = () => {
     const [previewImage, setPreviewImage] = useState(useStore('image').data);
@@ -18,7 +19,11 @@ const PreviewPage = () => {
 
     let results = [];
 
-    async function confirm() {
+    const handleCropClick = () => {
+        zmp.views.main.router.navigate('/crop');
+    }
+
+    async function handleConfirmButtonClick() {
 
         //convert image into File
         const blob = await fetch(previewImage).then(res => res.blob());
@@ -57,7 +62,7 @@ const PreviewPage = () => {
                 flexDirection: 'column',
                 height: '100vh',
                 justifyContent: 'center',
-                alignItems: 'center',
+                alignItems: 'center'
             }}>
                 <NavbarBack title='Preview'/>
             <div
@@ -66,7 +71,8 @@ const PreviewPage = () => {
                     justifyContent: 'center',
                     alignTtems: 'center',
                     flexAlign: 'center',
-                    height:'80vh'
+                    height:'90vh',
+                    width:'100%',
                 }}><img
                     style={{
                         width:'100%',
@@ -74,16 +80,12 @@ const PreviewPage = () => {
                     }}
                     src={previewImage} />
             </div>
-            
-            <Button
-                onClick={confirm}
-                typeName='primary'
-                style={{
-                    position: 'absolute',
-                    bottom: 0,
-                    left: '50%',
-                    transform: 'translate(-50%, -50%)',
-                }}>Confirm</Button>
+            <Fab position='right-bottom' onClick={handleConfirmButtonClick}>
+                <Icon zmp='zi-arrow-right'/>
+            </Fab>
+            <Fab position='left-bottom' onClick={() => console.log('crop')}>
+                <FiCrop/>
+            </Fab>
         </Page>
     );
 }

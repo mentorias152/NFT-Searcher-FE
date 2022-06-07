@@ -2,22 +2,24 @@ import React, { useEffect, useState, useCallback } from 'react';
 import {
   Page,
   zmp,
-  Button,
+  Icon,
   useStore,
+  Fab,
 } from 'zmp-framework/react';
 import Cropper from 'react-easy-crop';
 import Slider from '@material-ui/core/Slider';
 import NavbarBack from '../components/navbar-back';
 import getCroppedImg from '../components/crop-image';
 
-const CropPage = () => {
+const CropComponent = () => {
 
-    const [imageSrc, setImageSrc] = useState(useStore('image').data);
+  const api = useStore('api').data;
+
+  const [imageSrc, setImageSrc] = useState(useStore('image').data);
   const [crop, setCrop] = useState({ x: 0, y: 0 })
   const [rotation, setRotation] = useState(0)
   const [zoom, setZoom] = useState(1)
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null)
-  const [croppedImage, setCroppedImage] = useState(null)
 
     if (typeof (imageSrc) == 'object') {
         var fileReader = new FileReader();
@@ -38,9 +40,35 @@ const CropPage = () => {
             croppedAreaPixels,
             rotation
           )
-          setCroppedImage(croppedImage);
           zmp.store.dispatch('setImage' , {data: croppedImage});
-          zmp.views.main.router.navigate('/preview');
+          const blob = await fetch(croppedImage).then(res => res.blob());
+        const file = new File([blob], 'screenshot.jpg', { type: blob.type });
+
+        //create form
+        var form = new FormData();
+        form.append('file', file);
+
+        //fetch data
+        fetch(api, {
+            body: form,
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json'
+            }
+        }).then(res => res.json()).then(res => {
+
+            for (let i = 0; i < res.result.length; i++) {
+                results[i] = res.result[i];
+            }
+
+            let str = 'false';
+            zmp.store.dispatch('setResults', results);
+            zmp.store.dispatch('setLoading', str);
+        })
+            .catch(err => console.error(err));
+
+        zmp.views.main.router.navigate('/loading');
+
         } catch (e) {
           console.error(e);
         }
@@ -49,13 +77,14 @@ const CropPage = () => {
   return (
     <Page name="crop"
     style={{
+      backgroundColor: 'white'
     }}>
       <NavbarBack title='Crop'/>
       <div
       style={{
         position: 'relative',
         width:'100%',
-        height:'75%'
+        height:'75vh'
   }}>
       <Cropper
               image={imageSrc}
@@ -64,20 +93,14 @@ const CropPage = () => {
               zoom={zoom}
               aspect={1/1}
               onCropChange={setCrop}
-              onRotationChange={setRotation}
               onCropComplete={onCropComplete}
               onZoomChange={setZoom}
+              restrictPosition={false}
             />
             </div>
-            <Button
-                onClick={handleCropClick}
-                typeName='primary'
-                style={{
-                    position: 'absolute',
-                    bottom: 0,
-                    left: '50%',
-                    transform: 'translate(-50%, -50%)',
-                }}>Crop</Button>
+            <Fab position='right-bottom' onClick={handleCropClick}>
+                <Icon zmp='zi-arrow-right'/>
+            </Fab>
 
             <div style={{
                 margin:'20px'
@@ -93,4 +116,4 @@ const CropPage = () => {
     </Page>
   );
 }
-export default CropPage;
+export default CropComponent;

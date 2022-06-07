@@ -6,6 +6,8 @@ import {
   NavTitleLarge,
   Icon,
   Card,
+  Link,
+  Button,
   zmp
 } from 'zmp-framework/react';
 import AppItems from '../components/app-items';
@@ -18,7 +20,7 @@ const HomePage = () => {
                 'Accept': 'application/json'
             }
         }).then(res => res.json()).then(res => {
-          zmp.store.dispatch('setApi', {data: res})})
+          zmp.store.dispatch('setApi', {data: res})});
 
   return (
     <Page name="home" navbarLarge>
@@ -37,6 +39,7 @@ const HomePage = () => {
         <hr></hr>
         Something here is writen too long just to test how long a card could be
       </Card>
+
     </Page>
   );
 }

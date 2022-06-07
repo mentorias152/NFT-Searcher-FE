@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Card, useStore, Grid, zmp, GridItem } from 'zmp-framework/react';
-import { FadeLoader } from 'react-spinners';
+import { Card, useStore, Grid, zmp, GridItem, SkeletonImage, SkeletonText } from 'zmp-framework/react';
+import eth from '../static/icons/eth.jpg'
 
 const ResultItems = () => {
 
@@ -16,9 +16,9 @@ const ResultItems = () => {
 
     return (
         (results != null && loading.data =='false') ?
-                <Grid columns={2}>
+                <Grid columns={2} noBorder>
                     {Object.keys(results).map(item => (
-                        <GridItem noBorder onClick={() => navigate(item)}style={{paddingBottom:'0px', paddingTop:'0px'}}>
+                        <GridItem onClick={() => navigate(item)}style={{paddingBottom:'0px', paddingTop:'0px'}}>
                             <Card
                                 onClick={ () => navigate(item)}
                                 inset key={results[item].id}
@@ -39,7 +39,7 @@ const ResultItems = () => {
                                         }}>
                                         {results[item].meta_name}
                                     </h3>
-                                    {results[item].lastsale_price == 0 ?
+                                    {results[item].lastsale_price == '-1' ?
                                         <p
                                         style={{
                                             textAlign:'center',
@@ -50,7 +50,7 @@ const ResultItems = () => {
                                     style={{
                                         textAlign:'center',
                                         color:'black'
-                                    }}>On sale for <strong>{results[item].lastsale_price}</strong> ETH</p>}
+                                    }}><img style={{width: '12px'}} src={eth}/> <strong>{results[item].lastsale_price}</strong></p>}
                                 </Card>
                             </GridItem>))}
                 </Grid>
@@ -58,16 +58,13 @@ const ResultItems = () => {
             <div>
                 <Grid columns={2} noBorder>
                     {temp.map(item => (
-                    <GridItem style={{height:'45vh'}} key={item}>
-                        <Card inset style={{width: '100%'}}>
-                    <div style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        height:'37vh'
-                    }}>
-                        <FadeLoader color='grey' />
-                    </div>
+                    <GridItem style={{height:'30vh'}} key={item}>
+                        <Card inset style={{display: 'flex',
+                                        height:'25vh',
+                                        flexAlign: 'column',
+                                        width:'100%'}}>
+                            <SkeletonImage effect='wave' />
+                            <SkeletonText effect='wave'>Collection - ID <br/> Price</SkeletonText>
                         </Card></GridItem>))}
                 </Grid>
             </div>

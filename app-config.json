@@ -17,6 +17,7 @@
     "/preview",
     "/result",
     "/detail",
-    "/crop"
+    "/crop",
+    "/loading"
   ]
 }
