@@ -5,11 +5,11 @@ const AppItems = () => {
   const zmprouter = zmp.views.main.router;
   const items = [
     { icon: 'zi-camera', label: 'Camera', link: '/camera' },
-    { icon: 'zi-photo', label: 'Photo', link: '/crop' },
+    { icon: 'zi-photo', label: 'Photo', link: '/preview' },
   ]
 
   const navigate = (itemLink) => {
-    itemLink=='/crop' ?
+    itemLink=='/preview' ?
         document.getElementById('selectFile').click()
       :
       zmprouter.navigate(itemLink);
@@ -18,7 +18,7 @@ const AppItems = () => {
   const setSelectedFile = (file) => {
     zmp.store.dispatch('setLinkBack', {data: '/upload'})
     zmp.store.dispatch('setImage', { data: file });
-    zmp.views.main.router.navigate('/crop');
+    zmp.views.main.router.navigate('/preview');
   }
 
   return (

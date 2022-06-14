@@ -83,7 +83,7 @@ const PreviewPage = () => {
             <Fab position='right-bottom' onClick={handleConfirmButtonClick}>
                 <Icon zmp='zi-arrow-right'/>
             </Fab>
-            <Fab position='left-bottom' onClick={() => console.log('crop')}>
+            <Fab position='left-bottom' onClick={() => zmp.views.main.router.navigate('/crop')}>
                 <FiCrop/>
             </Fab>
         </Page>

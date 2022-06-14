@@ -1,11 +1,25 @@
 import React from 'react'
 import { useStore, Page, Card, Grid, Button } from 'zmp-framework/react';
 import eth from '../static/icons/eth.jpg';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 const DetailPage = () => {
     const detail = useStore('detail');
     const str = detail.id.split(':');
     const raribleURL = 'https://rarible.com/token/' + str[1] + ':' + str[2];
+
+    const toast = useRef(null);
+
+    const handleCopyClick = () => {
+        console.log(raribleURL);
+        toast.current = zmp.toast.create({
+            text: "Copied!",
+            position: "center",
+            closeTimeout: 1000
+        });
+        toast.current.open();
+    }
+
     return (
         <Page>
             <Grid>
@@ -40,7 +54,9 @@ const DetailPage = () => {
                     <p><strong>    Description: </strong><br></br>
                     {detail.meta_description}
                     </p>
-                    <Button type='ghost' >View in Rarible</Button>
+                    <CopyToClipboard text={raribleURL}>
+                        <Button type='ghost' onClick={handleCopyClick}>Link to Rarible</Button>
+                    </CopyToClipboard>
                 </Card></div>
         </Grid>
         </Page>

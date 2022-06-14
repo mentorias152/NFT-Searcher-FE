@@ -32,7 +32,7 @@ const CameraPage = () => {
   const capture = React.useCallback(() => {
     zmp.store.dispatch('setLinkBack', { data: '/camera' });
     zmp.store.dispatch('setImage', { data: camRef.current.getScreenshot() });
-    zmp.views.main.router.navigate('/crop');
+    zmp.views.main.router.navigate('/preview');
   }, [camRef]);
 
   const selectFile = () => {
@@ -42,7 +42,7 @@ const CameraPage = () => {
   const setSelectedFile = (file) => {
     zmp.store.dispatch('setLinkBack', { data: '/camera' });
     zmp.store.dispatch('setImage', { data: file });
-    zmp.views.main.router.navigate('/crop');
+    zmp.views.main.router.navigate('/preview');
   }
 
   return (
