@@ -9,6 +9,7 @@ import {
   zmp
 } from 'zmp-framework/react';
 import AppItems from '../components/app-items';
+import { osName } from 'react-device-detect';
 
 const HomePage = () => {
 
@@ -38,6 +39,7 @@ const HomePage = () => {
         <hr></hr>
         Something here is writen too long just to test how long a card could be
       </Card>
+      <p>{osName}</p>
     </Page>
   );
 }

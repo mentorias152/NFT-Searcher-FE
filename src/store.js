@@ -2,13 +2,23 @@ import { createStore } from 'zmp-core/lite';
 
 const store = createStore({
   state: {
-    user: {
-      displayName: 'Zalo',
-      email: 'zte@zalo.me',
-      avatar: 'ZA',
-      online: true,
-      story: true
-    },
+    quotes: [
+      {
+        data: 'NFT is unique'
+      },
+      {
+        data: 'Phạm Gia Huy is here'
+      },
+      {
+        data: 'Trần Thanh Bình is here'
+      },
+      {
+        data: 'Nguyễn Tiến Anh is here'
+      },
+      {
+        data: 'Đặng Phương Nam is here'
+      },
+    ],
 
     results: null,
     image: null,
@@ -24,11 +34,11 @@ const store = createStore({
   },
 
   getters: {
-    user({ state }) {
-      return state.user
+    quotes({ state }) {
+      return state.quotes
     },
 
-    image( {state} ) {
+    image({ state }) {
       return state.image
     },
 
@@ -36,7 +46,7 @@ const store = createStore({
       return state.results
     },
 
-    loading({ state }){
+    loading({ state }) {
       return state.loading
     },
 
@@ -53,7 +63,7 @@ const store = createStore({
     }
   },
   actions: {
-    setUser({ state }, data) {
+    setQuotes({ state }, data) {
       state.user = { ...state.user, ...data }
     },
 
@@ -62,23 +72,23 @@ const store = createStore({
     },
 
     setResults({ state }, data) {
-      state.results = { ...state.results, ...data}
+      state.results = { ...state.results, ...data }
     },
 
     setLoading({ state }, data) {
-      state.loading = { ...state.loading, data}
+      state.loading = { ...state.loading, data }
     },
 
     setDetail({ state }, data) {
-      state.detail = { ...state.detail, ...data}
+      state.detail = { ...state.detail, ...data }
     },
 
     setLinkBack({ state }, data) {
-      state.linkBack = { ...state.linkBack, ...data}
+      state.linkBack = { ...state.linkBack, ...data }
     },
 
     setApi({ state }, data) {
-      state.api = { ...state.api, ...data}
+      state.api = { ...state.api, ...data }
     }
   }
 })

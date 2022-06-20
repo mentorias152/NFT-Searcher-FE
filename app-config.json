@@ -18,6 +18,7 @@
     "/result",
     "/detail",
     "/crop",
+    "/ios-camera",
     "/loading"
   ]
 }

@@ -1,16 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import {
     Page,
-    zmp
+    zmp,
+    useStore
 } from 'zmp-framework/react';
 import octoLoader from '../static/icons/octo-loader.gif';
 
 const LoadingPage = () => {
+
+    const quotes = useStore('quotes');
+    const [quote, setQuote] = useState("");
+
+    const generateRandomQuote = () => {
+        const r = Math.floor(Math.random() * quotes.length);
+        setQuote(quotes[r].data)
+    }
+
     const [text, setText] = useState('loading');
 
     useEffect(() => {
         setText('Processing your image');
-        setTimeout(() => zmp.views.main.router.navigate('/result'), 5000)
+        const r = Math.floor(Math.random() * quotes.length);
+        setQuote(quotes[r].data);
+        setTimeout(() => zmp.views.main.router.navigate('/result'), 10000);
     }, [])
 
     return (<Page style={{
@@ -45,7 +57,9 @@ const LoadingPage = () => {
                 flexDirection: 'column',
                 justifyContent: 'center',
             }}
-        ><p style={{textAlign: 'center'}}>Fun fact: <br></br> NFT is unique</p>
+        ><p 
+        style={{textAlign: 'center'}}
+        onClick={generateRandomQuote}>Fun fact: <br></br>{quote}</p>
         </div>
     </Page>)
 }
