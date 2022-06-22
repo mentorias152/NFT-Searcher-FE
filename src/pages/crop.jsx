@@ -4,6 +4,7 @@ import {
   zmp,
   Icon,
   useStore,
+  Range,
   Fab,
 } from 'zmp-framework/react';
 import Cropper from 'react-easy-crop';
@@ -56,7 +57,7 @@ const CropComponent = () => {
                 'Accept': 'application/json'
             }
         }).then(res => res.json()).then(res => {
-
+            let results = [];
             for (let i = 0; i < res.result.length; i++) {
                 results[i] = res.result[i];
             }
@@ -106,12 +107,12 @@ const CropComponent = () => {
                 margin:'20px'
             }}>
                 <p>Rotation</p>
-                <Slider 
+                <Range
                 value={rotation}
             min={0}
             max={360}
             step={1}
-            onChange={(e, rotation) => setRotation(rotation)}/>
+            onRangeChange={(r) => setRotation(r)}/>
             </div>
     </Page>
   );

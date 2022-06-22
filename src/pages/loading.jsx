@@ -1,16 +1,39 @@
 import React, { useEffect, useState } from 'react';
 import {
     Page,
+<<<<<<< Updated upstream
     zmp
+=======
+    zmp,
+    Text,
+    useStore
+>>>>>>> Stashed changes
 } from 'zmp-framework/react';
 import octoLoader from '../static/icons/octo-loader.gif';
 
 const LoadingPage = () => {
+<<<<<<< Updated upstream
     const [text, setText] = useState('loading');
 
     useEffect(() => {
         setText('Processing your image');
         setTimeout(() => zmp.views.main.router.navigate('/result'), 5000)
+=======
+
+    const quotes = useStore('quotes');
+    const [quote, setQuote] = useState("");
+    const [text, setText] = useState('loading');
+
+    const generateRandomQuote = () => {
+        const r = Math.floor(Math.random() * quotes.length);
+        setQuote(quotes[r].data)
+    }
+
+    useEffect(() => {
+        setText('Processing your image');
+        setQuote('Click me if you want to read more fun facts');
+        setTimeout(() => zmp.views.main.router.navigate('/result'), 10000);
+>>>>>>> Stashed changes
     }, [])
 
     return (<Page style={{
@@ -37,6 +60,7 @@ const LoadingPage = () => {
         </div>
         </div>
         <div
+        onClick={generateRandomQuote}
             style={{
                 width: '100%',
                 height: '20vh',
@@ -45,7 +69,14 @@ const LoadingPage = () => {
                 flexDirection: 'column',
                 justifyContent: 'center',
             }}
+<<<<<<< Updated upstream
         ><p style={{textAlign: 'center'}}>Fun fact: <br></br> NFT is unique</p>
+=======
+        ><Text 
+        size='large'
+        style={{textAlign: 'center'}}
+        >Fun fact: <br></br>{quote}</Text>
+>>>>>>> Stashed changes
         </div>
     </Page>)
 }

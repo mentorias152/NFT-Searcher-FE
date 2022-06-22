@@ -6,9 +6,14 @@ import {
   NavTitleLarge,
   Icon,
   Card,
+  Button,
   zmp
 } from 'zmp-framework/react';
 import AppItems from '../components/app-items';
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 
 const HomePage = () => {
 
@@ -20,6 +25,8 @@ const HomePage = () => {
   }).then(res => res.json()).then(res => {
     zmp.store.dispatch('setApi', { data: res })
   });
+
+  
 
   return (
     <Page name="home" navbarLarge>

@@ -34,7 +34,7 @@ const PreviewPage = () => {
         form.append('file', file);
 
         //fetch data
-        fetch(api, {
+        fetch("http://localhost:9090/api/v1/upload", {
             body: form,
             method: 'POST',
             headers: {
@@ -52,7 +52,7 @@ const PreviewPage = () => {
         })
             .catch(err => console.error(err));
 
-        zmp.views.main.router.navigate('/result');
+        zmp.views.main.router.navigate('/loading');
     }
 
     return (
@@ -62,7 +62,8 @@ const PreviewPage = () => {
                 flexDirection: 'column',
                 height: '100vh',
                 justifyContent: 'center',
-                alignItems: 'center'
+                alignItems: 'center',
+                backgroundColor:'white'
             }}>
                 <NavbarBack title='Preview'/>
             <div
@@ -80,12 +81,22 @@ const PreviewPage = () => {
                     }}
                     src={previewImage} />
             </div>
-            <Fab position='right-bottom' onClick={handleConfirmButtonClick}>
-                <Icon zmp='zi-arrow-right'/>
-            </Fab>
-            <Fab position='left-bottom' onClick={() => zmp.views.main.router.navigate('/crop')}>
-                <FiCrop/>
-            </Fab>
+            <div
+            style={{
+                width:'100%',
+                position: 'absolute',
+          bottom: 0,
+          backgroundColor:'white',
+          display: 'flex',
+          flexDirection: 'row'
+            }}>
+                <Button typeName='tertiary' style={{width:'50%', margin: '20px 20px 20px 10px'}}
+                    onClick={() => zmp.views.main.router.navigate('/crop')}
+                >Crop</Button>
+                <Button typeName='primary' style={{width:'50%', margin: '20px 20px 20px 10px'}}
+                    onClick={handleConfirmButtonClick}
+                >Confirm</Button>
+            </div>
         </Page>
     );
 }
