@@ -2,13 +2,13 @@ import { createStore } from 'zmp-core/lite';
 
 const store = createStore({
   state: {
-    user: {
-      displayName: 'Zalo',
-      email: 'zte@zalo.me',
-      avatar: 'ZA',
-      online: true,
-      story: true
-    },
+    quotes: [
+      {data: 'NFT is unique'},
+      {data: 'Gia Huy'},
+      {data: 'Thanh Binh'},
+      {data: 'Phuong Nam'},
+      {data: 'Tien Anh'},
+    ],
 
     results: null,
     image: null,
@@ -24,8 +24,8 @@ const store = createStore({
   },
 
   getters: {
-    user({ state }) {
-      return state.user
+    quotes({ state }) {
+      return state.quotes
     },
 
     image( {state} ) {
@@ -53,8 +53,8 @@ const store = createStore({
     }
   },
   actions: {
-    setUser({ state }, data) {
-      state.user = { ...state.user, ...data }
+    setQuotes({ state }, data) {
+      state.quotes = { ...state.quotes, ...data }
     },
 
     setImage({ state }, data) {

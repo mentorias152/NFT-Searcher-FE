@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Card, useStore, Grid, zmp, GridItem, SkeletonImage, SkeletonText, Title, Text } from 'zmp-framework/react';
+import React from 'react';
+import { Card, useStore, zmp, Title, Text } from 'zmp-framework/react';
 import eth from '../static/icons/eth.jpg'
 
 const ResultItems = () => {
@@ -65,7 +65,7 @@ const ResultItems = () => {
                                     <div style={{width:'50%'}}>
                                     <Text
                                             style={{color:'gray'}}>
-                                                Highest bid
+                                                Last sale
                                             </Text>
                                             <Text style={{
                                             color:'black'}}>
