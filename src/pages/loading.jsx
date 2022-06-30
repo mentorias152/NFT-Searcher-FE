@@ -21,7 +21,6 @@ const LoadingPage = () => {
     useEffect(() => {
         setText('Processing your image');
         setQuote('Click me if you want to read more fun facts');
-        setTimeout(() => zmp.views.main.router.navigate('/result'), 10000);
     }, [])
 
     return (<Page style={{

@@ -2,8 +2,12 @@ import React, { useRef, useEffect } from 'react';
 import Webcam from "react-webcam";
 import { RadioButtonChecked } from '@material-ui/icons';
 import { zmp, Page, Link, Icon } from 'zmp-framework/react';
+import { setNavbar } from '../components/set-navbar';
 
 const CameraPage = () => {
+
+  //set navbar
+  setNavbar('Camera', true);
 
   const videoConstraints = {
     facingMode: "environment"
@@ -78,11 +82,6 @@ const CameraPage = () => {
           transform: 'translate(-50%, -50%)',
           cursor: 'pointer'
         }} />
-        <Icon style={{color: 'white',
-          position: 'absolute',
-          left: '0px',
-          margin:'20px'}} onClick={() => zmp.views.main.router.navigate('/index')} zmp="zi-arrow-left"/>
-
       <div
         style={{
           position: 'absolute',

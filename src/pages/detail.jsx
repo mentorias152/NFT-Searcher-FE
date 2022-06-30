@@ -5,6 +5,9 @@ import NavbarBack from '../components/navbar-back';
 import api from 'zmp-sdk';
 
 const DetailPage = () => {
+    
+    //set navbar
+  setNavbar('Camera', true);
 
     api.setNavigationBarTitle({
         title: 'Detail',
@@ -46,8 +49,7 @@ const DetailPage = () => {
             <NavbarBack title='Preview' />
             <div
                 style={{
-                    width: '100%',
-                    backgroundColor: 'white'
+                    width: '100%'
                 }}>
                 <div
                     style={{
@@ -90,6 +92,24 @@ const DetailPage = () => {
                     </div>
                 </div>
                 <Text style={{ padding: '20px' }}>{detail.meta_description}</Text>
+            </div>
+            
+            <Title style={{color: 'grey', paddingLeft:'20px'}}>Properties</Title>
+            <div
+                style={{
+                    display:'flex',
+                    flexWrap: 'wrap',
+                    padding: '10px',
+                }}>
+                    {Object.keys(attributes).map(item => (
+                        <Card inset
+                        style={{
+                            margin:'10px'
+                        }}>
+                            <Text style={{color: 'grey'}} noSpace size='xxsmall'>{attributes[item].key}</Text>
+                            <Text size='large'>{attributes[item].value}</Text>
+                        </Card>
+                    ))}
             </div>
         </Page>
     );

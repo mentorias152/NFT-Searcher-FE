@@ -8,11 +8,13 @@ import {
   Fab,
 } from 'zmp-framework/react';
 import Cropper from 'react-easy-crop';
-import Slider from '@material-ui/core/Slider';
-import NavbarBack from '../components/navbar-back';
 import getCroppedImg from '../components/crop-image';
+import { setNavbar } from '../components/set-navbar';
 
 const CropComponent = () => {
+
+  //set navbar
+  setNavbar('Crop', true);
 
   const api = useStore('api').data;
 
@@ -80,7 +82,6 @@ const CropComponent = () => {
     style={{
       backgroundColor: 'white'
     }}>
-      <NavbarBack title='Crop'/>
       <div
       style={{
         position: 'relative',
