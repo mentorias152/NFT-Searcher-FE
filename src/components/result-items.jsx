@@ -65,7 +65,7 @@ const ResultItems = () => {
                                     <div style={{width:'50%'}}>
                                     <Text
                                             style={{color:'gray'}}>
-                                                Last sale
+                                                Highest bid
                                             </Text>
                                             <Text style={{
                                             color:'black'}}>

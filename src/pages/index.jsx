@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import {
   Page,
   Navbar,
@@ -40,6 +40,7 @@ const HomePage = () => {
         <hr></hr>
         Something here is writen too long just to test how long a card could be
       </Card>
+
     </Page>
   );
 }

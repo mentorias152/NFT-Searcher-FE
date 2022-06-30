@@ -1,10 +1,32 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import { useStore, Page, Text, Button, zmp, Title } from 'zmp-framework/react';
 import eth from '../static/icons/eth.jpg';
 import NavbarBack from '../components/navbar-back';
 import api from 'zmp-sdk';
 
 const DetailPage = () => {
+
+    api.setNavigationBarTitle({
+        title: 'Detail',
+        success: (res) => {
+            console.log(res)
+        },
+        fail: (error) => {
+          // xử lý khi gọi api thất bại
+            console.log(error);
+        }
+      });
+    
+    api.setNavigationBarLeftButton({
+        type: 'back',
+        success: (res) => {
+            console.log(res)
+        },
+        fail: (error) => {
+          // xử lý khi gọi api thất bại
+            console.log(error);
+        }
+      });
     const detail = useStore('detail');
     const str = detail.id.split(':');
     const raribleURL = 'https://rarible.com/token/' + str[1] + ':' + str[2];
