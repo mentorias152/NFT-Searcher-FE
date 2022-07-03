@@ -63,7 +63,11 @@ const HistoryDetail = () => {
                         </Box>
                         <Swiper effect='creative' centeredSlides={true} slidesPerView={1} pagination>
                             <SwiperSlide>
-                                <div onClick={() => console.log('clicked')}>
+                                <div 
+                                onClick={() => console.log('clicked')}
+                                style={{
+                                    margin:'0px 20px 30px 20px'
+                                }}>
                                 <img src={temp}
                                     style={{
                                         width: '100%',
@@ -105,6 +109,11 @@ const HistoryDetail = () => {
                                 </div>
                                 </SwiperSlide>
                                 <SwiperSlide>
+                                <div 
+                                onClick={() => console.log('clicked')}
+                                style={{
+                                    margin:'0px 20px 30px 20px'
+                                }}>
                                 <img src={temp}
                                     style={{
                                         width: '100%',
@@ -113,11 +122,9 @@ const HistoryDetail = () => {
                                 <div
                                     style={{ margin: '10px' }}>
                                     <Title
-                                        size='normal'
-                                    >
+                                        size='normal'>
                                         NFT Name 1
                                     </Title>
-
                                 </div>
                                 <Card
                                     style={{
@@ -144,6 +151,7 @@ const HistoryDetail = () => {
                                         </div>
                                     </div>
                                 </Card>
+                                </div>
                                 </SwiperSlide>
                         </Swiper>
                     </Card>
