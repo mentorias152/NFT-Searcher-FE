@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Page, zmp, useStore, Button, Fab, Icon } from 'zmp-framework/react';
 import FormData from 'form-data';
 import NavbarBack from '../components/navbar-back';
-import {FiCrop} from 'react-icons/fi';
+import { setNavbar } from '../components/set-navbar';
 
 const PreviewPage = () => {
     const [previewImage, setPreviewImage] = useState(useStore('image').data);
@@ -52,7 +52,7 @@ const PreviewPage = () => {
         })
             .catch(err => console.error(err));
 
-        zmp.views.main.router.navigate('/loading');
+        zmp.views.main.router.navigate('/result');
     }
 
     return (

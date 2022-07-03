@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import { Page, zmp, Navbar, NavLeft, NavTitle, Link, Icon } from 'zmp-framework/react';
-import NavbarBackCustom from '../components/navbar-back-custom';
+import { Page, useStore } from 'zmp-framework/react';
+import { setNavbar } from '../components/set-navbar';
 import ResultItems from '../components/result-items';
 import Loading from '../components/loading';
 

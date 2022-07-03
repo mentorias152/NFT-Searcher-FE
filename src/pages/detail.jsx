@@ -1,38 +1,37 @@
 import React, {useEffect, useState} from 'react'
-import { useStore, Page, Text, Button, zmp, Title } from 'zmp-framework/react';
+import { useStore, Page, Text, Button, zmp, Title, Card } from 'zmp-framework/react';
 import eth from '../static/icons/eth.jpg';
 import NavbarBack from '../components/navbar-back';
 import api from 'zmp-sdk';
+import { setNavbar } from '../components/set-navbar';
 
 const DetailPage = () => {
     
     //set navbar
-  setNavbar('Camera', true);
+    setNavbar('Camera', true);
 
-    api.setNavigationBarTitle({
-        title: 'Detail',
-        success: (res) => {
-            console.log(res)
-        },
-        fail: (error) => {
-          // xử lý khi gọi api thất bại
-            console.log(error);
-        }
-      });
-    
-    api.setNavigationBarLeftButton({
-        type: 'back',
-        success: (res) => {
-            console.log(res)
-        },
-        fail: (error) => {
-          // xử lý khi gọi api thất bại
-            console.log(error);
-        }
-      });
     const detail = useStore('detail');
     const str = detail.id.split(':');
     const raribleURL = 'https://rarible.com/token/' + str[1] + ':' + str[2];
+
+    const attributes = [
+        {
+            'key': 'Attribute 1',
+            'value': 'temp'
+        },
+        {
+            'key': 'A2',
+            'value': 'placeholder'
+        },
+        {
+            'key': 'Att 3',
+            'value': 'temp'
+        },
+        {
+            'key': 'Attribute 4',
+            'value': 'long value goes here'
+        },
+    ]
 
     const handleRaribleClick = async () => {
         console.log(raribleURL);
@@ -93,8 +92,8 @@ const DetailPage = () => {
                 </div>
                 <Text style={{ padding: '20px' }}>{detail.meta_description}</Text>
             </div>
-            
-            <Title style={{color: 'grey', paddingLeft:'20px'}}>Properties</Title>
+
+            <Title style={{ paddingLeft:'20px'}}>Properties</Title>
             <div
                 style={{
                     display:'flex',
