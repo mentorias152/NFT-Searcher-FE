@@ -50,7 +50,7 @@ const AppItems = () => {
 
       <input 
       onChange={(e) => setSelectedFile(e.target.files[0])}
-      id='selectFile' type='file' accept='image/*' style={{display:'none'}}></input>
+      id='selectFile' accept='image/*' style={{display:'none'}}></input>
     </div>
   )
 }

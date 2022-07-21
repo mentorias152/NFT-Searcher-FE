@@ -2,12 +2,10 @@ import React, { useRef, useEffect } from 'react';
 import Webcam from "react-webcam";
 import { RadioButtonChecked } from '@material-ui/icons';
 import { zmp, Page, Link, Icon } from 'zmp-framework/react';
-import { setNavbar } from '../components/set-navbar';
 
 const CameraPage = () => {
 
-  //set navbar
-  setNavbar('Camera', false);
+  zmp.store.dispatch('setLoading', 'true');
 
   const videoConstraints = {
     facingMode: "environment"
@@ -36,7 +34,7 @@ const CameraPage = () => {
   const capture = React.useCallback(() => {
     zmp.store.dispatch('setLinkBack', { data: '/camera' });
     zmp.store.dispatch('setImage', { data: camRef.current.getScreenshot() });
-    zmp.views.main.router.navigate('/preview');
+    zmp.views.main.router.navigate('/crop');
   }, [camRef]);
 
   const selectFile = () => {
@@ -46,15 +44,15 @@ const CameraPage = () => {
   const setSelectedFile = (file) => {
     zmp.store.dispatch('setLinkBack', { data: '/camera' });
     zmp.store.dispatch('setImage', { data: file });
-    zmp.views.main.router.navigate('/preview');
+    zmp.views.main.router.navigate('/crop');
   }
 
   return (
     <Page
       style={{
         display: 'flex',
-        flexDirection: 'column',
-        height: '100vh',
+          flexDirection: 'column',
+          height: '100vh',
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: 'black',
@@ -82,10 +80,15 @@ const CameraPage = () => {
           transform: 'translate(-50%, -50%)',
           cursor: 'pointer'
         }} />
-        <Icon style={{color: 'white',
-          position: 'absolute',
-          left: '0px',
-          margin:'20px'}} onClick={() => zmp.views.main.router.navigate('/index')} zmp="zi-arrow-left"/>
+
+        <Link href='/index' noLinkClass
+                style={{
+                    position: 'fixed',
+                    top: '0px',
+                    left: '0px',
+                    margin: '15px'
+                }}>
+                <Icon size='25' style={{ color: 'white' }} zmp="zi-arrow-left" /></Link>
 
       <div
         style={{

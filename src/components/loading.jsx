@@ -3,7 +3,8 @@ import {
     Page,
     zmp,
     Text,
-    useStore
+    useStore,
+    Icon
 } from 'zmp-framework/react';
 import octoLoader from '../static/icons/octo-loader.gif';
 
@@ -26,6 +27,11 @@ const LoadingPage = () => {
     return (<Page style={{
         backgroundColor: 'white'
     }}>
+        <Icon style={{color: 'black',
+          position: 'absolute',
+          top:'0px',
+          left: '0px',
+          margin:'15px'}} size='25' onClick={() => zmp.views.main.router.navigate('/index')} zmp="zi-arrow-left"/>
         <div
             style={{
                 width: '100%',
@@ -45,6 +51,7 @@ const LoadingPage = () => {
             textAlign:'center'}}>
         <h2>{text}</h2>
         </div>
+        
         </div>
         <div
         onClick={generateRandomQuote}
@@ -58,9 +65,10 @@ const LoadingPage = () => {
             }}
         ><Text 
         size='large'
-        style={{textAlign: 'center'}}
+        style={{textAlign: 'center', margin:'20px'}}
         >Fun fact: <br></br>{quote}</Text>
         </div>
+        
     </Page>)
 }
 

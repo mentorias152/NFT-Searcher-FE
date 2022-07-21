@@ -4,83 +4,89 @@ import {
   Icon,
   zmp,
   Fab,
-  Title
+  FabBackdrop,
+  Box,
+  Title,
+  Text,
+  useStore
 } from 'zmp-framework/react';
-import { setNavbar } from '../components/set-navbar';
 import History from '../components/history';
 import About from '../components/about-us';
-
+import empty from '../static/icons/empty.png'
 
 const HomePage = () => {
 
   const [chosen, setChosen] = useState('History');
+  const osName = useStore('os').data;
+  const history = useStore('history');
 
-  fetch('https://searcher-88e63-default-rtdb.asia-southeast1.firebasedatabase.app/url.json', {
-    method: 'GET',
-    headers: {
-      'Accept': 'application/json'
-    }
-  }).then(res => res.json()).then(res => {
-    zmp.store.dispatch('setApi', { data: res })
-  });
-
+  const setSelectedFile = (file) => {
+    zmp.store.dispatch('setLinkBack', { data: '/index' });
+    zmp.store.dispatch('setImage', { data: file });
+    zmp.views.main.router.navigate('/crop');
+  }
   return (
-
-    <Page 
+    <Page
       style={{
         display: 'flex',
         flexDirection: 'column',
-        justifyContent:'center'
+        justifyContent: 'center'
       }}>
-
-        {/*Top welcome bar*/}
-      <div
-        style={{
-          height:'30vh',
-          width:'100%',
-          backgroundColor:'#1843ef',
-          position:'fixed',
-          top:'0',
-        }}>
-          <p
-          style={{
-            color:'white',
-            textAlign:'center',
-            fontSize:'30px',
-            paddingTop:'30px'
-          }}>Welcome to NFT Verifier
-          </p>
-          <p
-          style={{
-            color:'white',
-            textAlign:'center',
-            fontSize:'20px',
-            }}>Scan to find NFT now
-          </p>
-      </div>
-
       {/*Tabs*/}
       <div
         style={{
-          height:'calc(80vh - 50px)',
-          width:'100%',
-          top:'20vh',
-          position:'fixed',
-          display:'flex',
-          flexDirection:'column',
-          alignItems:'center',
-          backgroundColor:'white',
-          borderTopLeftRadius: '40px',
-          borderTopRightRadius: '40px',
-          }}>
-      {chosen == 'History' ? <History/> : <About/>}
+          height: 'calc(100vh - 50px)',
+          width: '100%',
+          position: 'fixed',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}>
+        {chosen == 'History' ?
+          (Object.keys(history).length !=0 ) ?
+            <History />
+            :
+            (<div
+              style={{
+                width: '100vw',
+                height: '100vh',
+                display: 'flex',
+                alignItems: 'center',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                opacity: '50%'
+              }}>
+                <img src={empty}
+              style={{
+                width: '50%',
+                objectFit: 'contain',
+              }} />
+              <div style={{
+                width: '100%',
+                padding: '20px',
+                textAlign: 'center'
+              }}>
+                <Box>
+                  <Title size='xlarge'>No history found</Title>
+                </Box>
+                <Box mt='7'>
+                  <Text noSpace size='xlarge'>Seem like you have not scanned any NFT yet</Text>
+                  <Text noSpace size='xlarge'>Start scanning now</Text>
+                </Box>
+              </div>
+            </div>)
+          :
+          <About />}
       </div>
       {/*Bottom bar with floating button*/}
-      <Fab position='center-bottom' large slot='fixed' style={{height: '55px', width:'50px'}}
-      onClick={() => zmp.views.main.router.navigate('/camera')}>
-        <Icon zmp='zi-camera-solid'></Icon>
+      <FabBackdrop slot='fixed' style={{ zIndex: 1400 }} />
+      <Fab position='center-bottom' large slot='fixed' style={{ height: '55px', width: '50px' }}
+        onClick={() => (osName == 'iOS') ? document.getElementById('selectFile').click() : zmp.views.main.router.navigate('/camera')}>
+        <Icon zmp='zi-plus' />
       </Fab>
-
+      <input
+        onChange={(e) => setSelectedFile(e.target.files[0])}
+        id='selectFile' type={'file'} accept='image/*' style={{ display: 'none' }}></input>
       <div
         style={{
           width: '100%',
@@ -89,11 +95,12 @@ const HomePage = () => {
           position: 'fixed',
           backgroundColor: 'white',
           display: 'flex',
+          borderTop: '1px solid #d9d9d9'
         }}>
         <div
           onClick={() => {
-            setNavbar('History', false)
-            setChosen('History')}
+            setChosen('History')
+          }
           }
           style={{
             width: '50%',
@@ -102,12 +109,12 @@ const HomePage = () => {
             alignItems: 'center',
             justifyContent: 'center',
           }}>
-          {chosen == 'History' ? <Icon color='BL300' zmp='zi-list-1' size={'35'} /> : <Icon zmp='zi-list-1' size={'30'} />}
+          {chosen == 'History' ? <Icon color='BL300' zmp='zi-list-1' size={'35'} /> : <Icon style={{ color: '#7f7f7f' }} zmp='zi-list-1' size={'30'} />}
         </div>
         <div
           onClick={() => {
-            setNavbar('About us', false)
-            setChosen('About us')}
+            setChosen('About us')
+          }
           }
           style={{
             width: '50%',
@@ -116,10 +123,9 @@ const HomePage = () => {
             alignItems: 'center',
             justifyContent: 'center',
           }}>
-          {chosen == 'About us' ? <Icon color='BL300' zmp='zi-group' size={'35'} /> : <Icon zmp='zi-group' size={'30'} />}
+          {chosen == 'About us' ? <Icon color='BL300' zmp='zi-members-solid' size={'35'} /> : <Icon style={{ color: '#7f7f7f' }} zmp='zi-members' size={'30'} />}
         </div>
       </div>
-
     </Page>
   );
 }

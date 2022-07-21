@@ -1,12 +1,11 @@
 import React from 'react';
-import { Link, Navbar, NavLeft, Icon, NavTitle, NavRight, zmp, useStore } from 'zmp-framework/react';
+import { Link, Navbar, NavLeft, Icon, NavTitle, NavRight, zmp, useStore, Title } from 'zmp-framework/react';
 
 const NavbarBackCustom = ({ title, linkRight, labelRight }) => {
   
   const link = useStore('linkBack').data;
 
   const nav = () => {
-    zmp.store.dispatch('setLoading', 'true');
     if (link == '/camera')
       zmp.views.main.router.navigate(link);
       else
