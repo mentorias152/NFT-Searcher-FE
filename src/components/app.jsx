@@ -44,7 +44,7 @@ const MyApp = () => {
         api.getUserInfo({
           success: (data) => {
             zmp.store.dispatch('setUserID', {data: data.userInfo.id})
-            fetch('https://zalo-nft.nguyenanhdevops.live/users/' + data.userInfo.id + '/history')
+            fetch('https://nft-verifier.nguyenanhdevops.live/users/' + data.userInfo.id + '/history')
             .then(res => res.json().then(res => {
               zmp.store.dispatch('setHistory', res)
             }))

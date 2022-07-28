@@ -9,7 +9,6 @@ import {
     GridItem,
     Grid
 } from 'zmp-framework/react';
-import temp from '../static/icons/eth.jpg'
 
 const History = () => {
 

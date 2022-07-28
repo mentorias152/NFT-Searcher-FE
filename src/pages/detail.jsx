@@ -7,13 +7,13 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 const DetailPage = () => {
 
     const detail = useStore('detail');
+    const attributes = detail.attributes;
     const str = detail.id.split(':');
     const raribleURL = 'https://rarible.com/token/' + str[1] + ':' + str[2];
 
     var creatorID = detail.creators[0].account;
     creatorID = creatorID.split(':');
 
-    const attributes = detail.attributes;
 
     const handleRaribleClick = async () => {
         console.log(raribleURL);
@@ -178,7 +178,7 @@ const DetailPage = () => {
                         style={{
                             display: 'flex',
                             flexWrap: 'wrap',
-                            padding: '10px',
+                            padding: '30px 10px 10px 10px',
                         }}>
                         <div
                             style={{
@@ -186,7 +186,7 @@ const DetailPage = () => {
                                 flexDirection: 'row',
                                 width: '100%',
                             }}>
-                            <Title style={{ padding: '10px' }}>Properties</Title>
+                            <Title style={{ paddingLeft: '10px' }}>Properties</Title>
                         </div>
                         {Object.keys(attributes).map(item => (
                             <Card inset

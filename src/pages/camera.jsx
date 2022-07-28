@@ -13,24 +13,6 @@ const CameraPage = () => {
 
   const camRef = useRef(null);
 
-  const getVideo = () => {
-    navigator.mediaDevices
-      .getUserMedia({
-        video: true
-      })
-      .then((stream) => {
-        let video = camRef.current;
-        video.srcObject = stream;
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  };
-
-  useEffect(() => {
-    getVideo();
-  }, [camRef]);
-
   const capture = React.useCallback(() => {
     zmp.store.dispatch('setLinkBack', { data: '/camera' });
     zmp.store.dispatch('setImage', { data: camRef.current.getScreenshot() });
@@ -100,7 +82,7 @@ const CameraPage = () => {
 
         <Icon zmp='zi-photo' size='40' color='white' onClick={selectFile} />
         <input id='selectFile' type='file' accept='image/*' style={{ display: 'none' }}
-          onChange={(e) => setSelectedFile(e.target.files[0])}></input>
+          onChange={(e) => setSelectedFile(e.target.files[0])}/>
       </div>
 
     </Page>

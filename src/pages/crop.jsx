@@ -15,18 +15,18 @@ import getCroppedImg from '../components/crop-image';
 const CropComponent = () => {
 
   const ratio = [
-    {text: '1:1'},
-    {text: '4:5'},
-    {text: '4:3'},
-    {text: '2:1'},
-    {text: '5:7'},
-    {text: '7:4'},
-    {text: '16:9'},
-    {text: '9:16'},
-    {text: '7:5'},
-    {text: '5:3'},
-    {text: '2:3'},
-    {text: '3:2'},
+    { text: '1:1' },
+    { text: '4:5' },
+    { text: '4:3' },
+    { text: '2:1' },
+    { text: '5:7' },
+    { text: '7:4' },
+    { text: '16:9' },
+    { text: '9:16' },
+    { text: '7:5' },
+    { text: '5:3' },
+    { text: '2:3' },
+    { text: '3:2' },
   ];
 
   const [chosen, setChosen] = useState('1:1');
@@ -67,8 +67,7 @@ const CropComponent = () => {
       var form = new FormData();
       form.append('data', file);
 
-      //fetch data
-      fetch('https://zalo-nft.nguyenanhdevops.live/users/' + userID.data + '/search', {
+      fetch('https://nft-verifier.nguyenanhdevops.live/users/' + userID.data + '/search', {
         body: form,
         method: 'POST',
         headers: {
@@ -144,17 +143,17 @@ const CropComponent = () => {
           {Object.keys(ratio).map(item => {
             if (ratio[item].text == chosen)
               return (<Box p='5'
-              style={{ 
-                backgroundColor: '#404040', 
-                borderRadius: '10px',
-              }}>
+                style={{
+                  backgroundColor: '#404040',
+                  borderRadius: '10px',
+                }}>
                 <Text style={{ color: 'white' }}> {ratio[item].text}</Text></Box>)
             else return (
               <div onClick={() => handleRatio(item)}>
-            <Box p='5' >
-              <Text style={{ color: 'white'}}> {ratio[item].text} </Text>
-            </Box></div>)
-})}
+                <Box p='5' >
+                  <Text style={{ color: 'white' }}> {ratio[item].text} </Text>
+                </Box></div>)
+          })}
         </div>
         <div
           style={{
@@ -166,8 +165,8 @@ const CropComponent = () => {
             alignItems: 'center'
           }}>
           <Icon zmp='zi-check'
-          onClick={handleCropClick}
-            style={{ margin: '20px', color:'white' }} />
+            onClick={handleCropClick}
+            style={{ margin: '20px', color: 'white' }} />
         </div>
       </div>
 
