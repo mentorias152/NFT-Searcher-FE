@@ -1,69 +1,107 @@
-import React, { useState, useEffect } from 'react';
-import { Card, useStore, Grid, zmp, GridItem } from 'zmp-framework/react';
-import { FadeLoader } from 'react-spinners';
+import React from 'react';
+import { Card, useStore, zmp, Title, Text, Navbar, NavLeft, NavTitle, Icon, Page } from 'zmp-framework/react';
+import eth from '../static/icons/eth.png'
+import NavbarBackCustom from './navbar-back-custom';
 
 const ResultItems = () => {
 
-    const temp = [1,2,3,4,5,6,7,8,9,10];
-
     const results = useStore('results');
-    const loading = useStore('loading');
 
     const navigate = (item) => {
         zmp.store.dispatch('setDetail', results[item]);
         zmp.views.main.router.navigate('/detail');
     }
 
+    const userID = useStore('userID').data;
+
+    const link = useStore('linkBack').data;
+    const nav = () => {
+        if (link == '/camera')
+            zmp.views.main.router.navigate(link);
+        else
+            zmp.views.main.router.navigate('/index');
+
+        fetch('https://zalo-nft.nguyenanhdevops.live/users/' + userID + '/history')
+            .then(res => res.json().then(res => {
+                console.log(res)
+                zmp.store.dispatch('setHistory', res )
+            }))
+    };
+
     return (
-        (results != null && loading.data =='false') ?
-                <Grid columns={2}>
-                    {Object.keys(results).map(item => (
-                        <GridItem style={{paddingBottom:'0px', paddingTop:'0px'}}>
-                            <Card
-                                onClick={ () => navigate(item)}
-                                inset key={results[item].id}
-                                    style={{
-                                        display: 'flex',
-                                        flexAlign: 'column',
-                                        width:'100%'
-                                    }}>
-                                    <img src={results[item].meta_content_url}
-                                        style={{
-                                            width: '90%'
-                                        }} />   
-                                    <hr></hr>
-                                    <h3
-                                        style={{
-                                            textAlign: 'center',
-                                            color:'black'
-                                        }}>
-                                        {results[item].meta_name}
-                                    </h3>
-                                    <p
-                                    style={{
-                                        textAlign:'center',
-                                        color:'black'
-                                    }}><strong>{results[item].lastsale_price} ETH</strong></p>
-                                </Card>
-                            </GridItem>))}
-                </Grid>
-            :
-            <div>
-                <Grid columns={2} noBorder>
-                    {temp.map(item => (
-                    <GridItem style={{height:'45vh'}} key={item}>
-                        <Card inset style={{width: '100%'}}>
-                    <div style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        height:'37vh'
-                    }}>
-                        <FadeLoader color='grey' />
-                    </div>
-                        </Card></GridItem>))}
-                </Grid>
-            </div>
+        <Page style={{
+            backgroundColor: 'white',
+        }}>
+            <Navbar>
+                <NavLeft displayName="zmp-navleft">
+                    <Icon onClick={nav} zmp="zi-arrow-left" />
+                </NavLeft>
+                <NavTitle>Results</NavTitle>
+            </Navbar>
+            {Object.keys(results).map(item => (
+                <div onClick={() => navigate(item)}>
+                    <Card
+                        inset key={results[item].id}
+                        style={{
+                            display: 'flex',
+                            flexAlign: 'column',
+                        }}>
+                        <img src={results[item].meta_content_url}
+                            style={{
+                                width: '100%',
+                                borderRadius: '5px'
+                            }} />
+                        <div
+                            style={{ margin: '10px' }}>
+                            <Title
+                                size='large'
+                                style={{
+                                    color: 'black'
+                                }}>
+                                {results[item].meta_name}
+                            </Title>
+                        </div>
+                        <Card
+                            style={{
+                                backgroundColor: '#ededed',
+                                borderRadius: '5px',
+                            }}>
+                            <div style={{
+                                display: 'flex',
+                                flexDirection: 'row'
+                            }}>
+                                <div style={{ width: '50%' }}>
+                                    <Text
+                                        style={{ color: 'gray' }}>
+                                        Price
+                                    </Text>
+                                    {results[item].price == '-1' ?
+                                        <Text
+                                            style={{
+                                                color: 'black'
+                                            }}>Not for sale</Text>
+                                        :
+                                        <Text
+                                            style={{
+                                                color: 'black',
+                                            }}><img style={{ width: '8px' }} src={eth} />{results[item].price}</Text>}
+                                </div>
+                                <div style={{ width: '50%' }}>
+                                    <Text
+                                        style={{ color: 'gray' }}>
+                                        Highest bid
+                                    </Text>
+                                    {results[item].price == '-1' ?
+                                        <Text>No data yet</Text>
+                                        :
+                                        <Text><img style={{ width: '8px' }} src={eth} /> {results[item].lastsale_price}</Text>
+                                    }
+                                </div>
+                            </div>
+                        </Card>
+                    </Card>
+                </div>))}
+        </Page>
     );
 }
 

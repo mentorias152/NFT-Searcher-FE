@@ -1,16 +1,23 @@
-import React, { useEffect } from 'react';
-import { Page, zmp, Navbar, NavLeft, NavTitle, Link, Icon } from 'zmp-framework/react';
-import NavbarBackCustom from '../components/navbar-back-custom';
+import React from 'react';
+import { Page, useStore } from 'zmp-framework/react';
 import ResultItems from '../components/result-items';
+import Loading from '../components/loading';
 
 const ResultPage = () => {
 
+  const results = useStore('results');
+  const loading = useStore('loading').data;
+
   return (
-    <Page >
-      <NavbarBackCustom title='Results'/>
-      <ResultItems />
+    <Page>
+      {(loading == "false" && results != null) ?
+        <ResultItems />
+        :
+        <Loading />
+      }
     </Page>
   );
+
 }
 
 export default ResultPage

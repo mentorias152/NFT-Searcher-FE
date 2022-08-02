@@ -12,11 +12,11 @@
   "listAsyncJS": [],
   "pages": [
     "/index",
-    "/about",
     "/camera",
     "/preview",
     "/result",
     "/detail",
-    "/crop"
+    "/crop",
+    "/history-detail"
   ]
 }
