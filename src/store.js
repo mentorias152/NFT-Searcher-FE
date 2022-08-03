@@ -123,6 +123,8 @@ const store = createStore({
     history: [],
 
     historyDetail: null,
+
+    memberDetail: null,
   },
 
   getters: {
@@ -168,6 +170,10 @@ const store = createStore({
 
     historyDetail({ state }) {
       return state.historyDetail
+    },
+
+    memberDetail({ state }) {
+      return state.memberDetail
     }
   },
   actions: {
@@ -214,6 +220,10 @@ const store = createStore({
     setHistoryDetail({ state }, data) {
       state.historyDetail = { ...state.historyDetail, ...data}
     },
+
+    setMemberDetail({ state }, data) {
+      state.memberDetail = { ...state.memberDetail, ...data}
+    }
   }
 })
 

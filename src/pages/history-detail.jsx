@@ -1,5 +1,4 @@
-import { NavigateBefore } from '@material-ui/icons';
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { useStore, Page, Swiper, SwiperSlide, Title, Card, Box, Text, Icon, Link, zmp } from 'zmp-framework/react';
 import eth from '../static/icons/eth.png';
 

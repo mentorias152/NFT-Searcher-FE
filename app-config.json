@@ -17,6 +17,7 @@
     "/result",
     "/detail",
     "/crop",
-    "/history-detail"
+    "/history-detail",
+    "/member-detail"
   ]
 }
