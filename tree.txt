@@ -1,0 +1,42 @@
+Folder PATH listing for volume New Volume
+Volume serial number is 269B-113E
+D:\CODE\NFT-VERIFIER\FE\SRC
+|   app.js
+|   store.js
+|   
++---components
+|       about-us.jsx
+|       app-items.jsx
+|       app.jsx
+|       crop-image.jsx
+|       history.jsx
+|       loading.jsx
+|       navbar-back-custom.jsx
+|       navbar-back.jsx
+|       result-items.jsx
+|       
++---css
+|       app.css
+|       icons.css
+|       
++---pages
+|       camera.jsx
+|       crop.jsx
+|       detail.jsx
+|       history-detail.jsx
+|       index.jsx
+|       result.jsx
+|       
++---src
+\---static
+    +---constant
+    \---icons
+            512x512.png
+            apple-touch-icon.png
+            empty.png
+            eth.jpg
+            eth.png
+            favicon.png
+            octo-loader.gif
+            temp.jpg
+            
